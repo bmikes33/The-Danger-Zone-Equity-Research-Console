@@ -152,6 +152,19 @@ const MACRO = {
     { d: "Mar 18", e: "GLUE Earnings", i: "Position" },
     { d: "Mar 18-19", e: "FOMC Meeting + Rate Decision", i: "Critical" },
   ],
+  news: [
+    { cat: "LABOR", signal: "Dovish", items: ["Feb NFP: -92K (vs +60K expected) — NEGATIVE payrolls, massive miss. Dec revised to -17K. Fed gov jobs -10K (down 11% since Oct 2024 peak). Construction -11K, healthcare -18.6K, leisure -27K. Labor market weaker than headlines suggest.", "ADP private payrolls: +15.5K/week for 4 weeks ending Feb 21 — barely positive.", "Conference Board Employment Trends: 105.37 (up slightly from 105.18) — 'slight resilience' but not strong."] },
+    { cat: "INFLATION", signal: "Mixed", items: ["NY Fed 1-Year Inflation Expectations: 3.00% (down from 3.09% Jan, 3.42% Dec) — declining, dovish. BUT: survey fielded pre-Iran war (2/2-28), doesn't capture Hormuz energy shock.", "Gas price expectations jumped to 4.1% from 2.8% — consumers seeing energy inflation.", "Food price expectations: 5.3% (down from 5.7%) — easing slightly.", "3-Year inflation expectations: 3.00% (stable). 5-Year: 2.98% (anchored near 3%).", "Rent price expectations: 5.9% (down sharply from 7.7% Dec) — shelter inflation easing in expectations."] },
+    { cat: "GROWTH", signal: "Slowing", items: ["Atlanta Fed GDPNow: Q1 at 2.1% (down from 3.0%) — growth estimate falling.", "NY Fed Nowcast: Q1 at 2.2% (down from 2.4%).", "NFIB Small Business Optimism: 98.8 (down from 99.3). Biggest move: expectations for higher sales -8pts to 8%. Uncertainty index 88 (down from 91 Jan, 104 Feb 2025).", "Consumer credit: +$8.1B Jan (vs +$11.1B expected) — consumers borrowing less than expected.", "Existing home sales: +1.7% to 4.09M (beat 3.88M est.) — housing showing some life. Median price $398K."] },
+    { cat: "GEOPOLITICAL", signal: "De-escalation signals", items: ["Trump: 'Could declare victory over Iran now.' 'Iran war to be over very soon.' 'Oil prices went up less than expected.'", "White House NEC Hassett: 'Expect Iran and Venezuela oil supply to stabilize soon.' 'Not very far off until Iran oil is stabilizing prices.'", "Military studying how to protect tankers on Strait of Hormuz. No plan to use SPR.", "IF de-escalation materializes: oil drops to $65-70 range, XLE/LNG give back geopolitical premium, but reduces inflation pressure = dovish for Fed."] },
+  ],
+  fedPersonas: [
+    { name: "Hammack", title: "Cleveland Fed", lean: "Hawkish-Hold", color: "#EF4444", quotes: ["'Virtually no progress on inflation'", "'Policy should be on hold for quite some time'", "Watching oil price surge for demand destruction risk", "Two-sided risks to rates", "Fed independence 'critical' for dollar confidence", "'Shouldn't take for granted conditions that made the dollar dominant'"] },
+    { name: "Collins", title: "Boston Fed", lean: "Hawkish", color: "#EF4444", quotes: ["'Continued upside risks' on inflation", "'Would pause rate cuts for some time'", "Mideast hostilities 'exacerbated' uncertainty", "Hearing rising prices: insurance, energy, construction, packaging, inputs", "'Do not see urgency for additional policy adjustments'", "'Inflation might not improve until second half'"] },
+    { name: "Daly", title: "San Francisco Fed", lean: "Neutral-Dovish", color: "#F59E0B", quotes: ["'Not seeing evidence economy's running hot'", "'No need for speed on rate cuts'", "Wage hikes offset by higher productivity", "Two-sided risks, watching oil", "'Hopes labor market was steadying was perhaps too much'", "'Not a clear read' on economy"] },
+    { name: "Goolsbee", title: "Chicago Fed", lean: "Dovish", color: "#22C55E", quotes: ["'Tough miss on jobs' but 'don't overindex on one report'", "'Still want pause' on rate changes", "Watching PCE services inflation", "If goods inflation surges 'can mostly blame tariffs'", "'Warm glow' on productivity growth", "'Not explained by AI yet'"] },
+    { name: "Miran", title: "Fed Governor", lean: "Dovish", color: "#22C55E", quotes: ["'Don't think we have inflation problem'", "'Should push toward neutral and re-evaluate'", "'Not to be more hawkish based on oil prices'", "Global inflation correlation breaking down", "'Firms in worse shape than thought'", "Transmission of energy shock 'less than in recent past'"] },
+  ],
 };
 
 const WATCHLIST = [{
@@ -530,6 +543,58 @@ function App() {
               <span><span style={{ display:"inline-block",width:8,height:8,borderRadius:2,background:"#7F1D1D",border:"1px solid #DC2626",marginRight:3,verticalAlign:"middle" }}></span>Critical</span>
               <span><span style={{ display:"inline-block",width:8,height:8,borderRadius:2,background:"#1E3A5F",border:"1px solid #2563EB",marginRight:3,verticalAlign:"middle" }}></span>Position</span>
               <span><span style={{ display:"inline-block",width:8,height:8,borderRadius:2,background:"#1A2336",marginRight:3,verticalAlign:"middle" }}></span>Data</span>
+            </div>
+          </div>
+
+          {/* News Feed */}
+          <div style={{ marginTop: 16 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#94A3B8", marginBottom: 8 }}>Macro News Digest <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0, color: "#64748B" }}>— signal from noise</span></div>
+            {d.news.map((n,i) => (
+              <div key={i} style={{ background: "#131B2E", border: "1px solid #1E293B", borderRadius: 9, marginBottom: 8, overflow: "hidden" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 14px", background: "#1A2336" }}>
+                  <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1, color: "#F1F5F9" }}>{n.cat}</span>
+                  <span style={{ fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 3,
+                    background: n.signal==="Dovish"?"#0A1F12":n.signal==="Hawkish"?"#1F0A0A":n.signal==="Mixed"?"#1A1206":n.signal.includes("De-escalation")?"#0C1A2E":"#1A2336",
+                    color: n.signal==="Dovish"?"#4ADE80":n.signal==="Hawkish"?"#FCA5A5":n.signal==="Mixed"?"#FBBF24":n.signal.includes("De-escalation")?"#93C5FD":"#94A3B8",
+                  }}>{n.signal}</span>
+                </div>
+                <div style={{ padding: "8px 14px" }}>
+                  {n.items.map((item,j) => (
+                    <div key={j} style={{ fontSize: 11, color: "#94A3B8", lineHeight: 1.6, padding: "4px 0", borderBottom: j<n.items.length-1 ? "1px solid #1A2336" : "none" }}>
+                      <span style={{ color: "#64748B", marginRight: 6 }}>›</span>{item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Fed Speaker Personas */}
+          <div style={{ marginTop: 16 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#94A3B8", marginBottom: 8 }}>Fed Speaker Tracker <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0, color: "#64748B" }}>— who says what</span></div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))", gap: 8 }}>
+              {d.fedPersonas.map((f,i) => (
+                <div key={i} style={{ background: "#131B2E", border: "1px solid #1E293B", borderLeft: "3px solid "+f.color, borderRadius: 9, padding: "12px 14px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                    <div>
+                      <span style={{ fontSize: 14, fontWeight: 800, color: "#F1F5F9" }}>{f.name}</span>
+                      <span style={{ fontSize: 10, color: "#64748B", marginLeft: 6 }}>{f.title}</span>
+                    </div>
+                    <span style={{ fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 3,
+                      background: f.lean.includes("Hawkish")?"#1F0A0A":f.lean.includes("Dovish")?"#0A1F12":"#1A1206",
+                      color: f.lean.includes("Hawkish")?"#FCA5A5":f.lean.includes("Dovish")?"#4ADE80":"#FBBF24",
+                    }}>{f.lean}</span>
+                  </div>
+                  {f.quotes.map((q,j) => (
+                    <div key={j} style={{ fontSize: 10, color: "#94A3B8", lineHeight: 1.5, padding: "2px 0", borderBottom: j<f.quotes.length-1 ? "1px solid #0F1628" : "none" }}>
+                      <span style={{ color: f.color, marginRight: 4 }}>•</span>{q}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 8, padding: "10px 14px", background: "#0F172A", borderRadius: 7, fontSize: 11, color: "#64748B", lineHeight: 1.6 }}>
+              <b style={{ color: "#94A3B8" }}>CPI Reaction Matrix:</b> Hot CPI → hawks (Hammack, Collins) dominate narrative, cuts pushed to H2 2026+, bearish growth equities. Cool CPI → doves (Goolsbee, Miran) have cover to push for June cut, bullish risk. Inline → status quo, Daly's "no need for speed" becomes consensus.
             </div>
           </div>
         </div>)}
