@@ -27,7 +27,7 @@ const { useState } = React;
 // ============================================================
 // DATA
 // ============================================================
-const UPDATED = "March 10, 2026 — 1:00 AM ET";
+const UPDATED = "March 10, 2026 — 9:15 AM ET";
 
 const INSTRUMENT_GROUPS = [
   { name: "Volatility", color: "#EF4444", instruments: ["VIX", "VVIX", "MOVE"] },
@@ -37,6 +37,7 @@ const INSTRUMENT_GROUPS = [
   { name: "Rates & Currency", color: "#F59E0B", instruments: ["US 2Y", "US 10Y", "US 30Y", "DXY", "USD/JPY", "JP 10Y"] },
   { name: "Commodities", color: "#22C55E", instruments: ["Gold", "Silver", "Copper", "Oil", "Nat Gas"] },
   { name: "Crypto", color: "#F97316", instruments: ["BTC", "ETH", "ETH/BTC"] },
+  { name: "Sectors", color: "#A78BFA", instruments: ["XLK", "XLV", "XLF", "XLE", "XLI", "XLC", "XLY", "XLP", "XLU", "XLRE", "IGV"] },
 ];
 
 const INSTRUMENT_DETAILS = {
@@ -107,6 +108,17 @@ const INSTRUMENT_DETAILS = {
   "BTC": { value: "$69,964", change: "+2.24%", signal: "Bear market — testing cycle support", color: "#EF4444", chartTime: "March 9, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/gKo86gPY/", levels: "$50K (deep support) · $65K (cycle support line) · $70K ← HERE · $78-80K (21 EMA resistance) · $85-90K (50 SMA) · $95K (200 SMA) · $125K (ATH)", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14, 30/70)", analysis: "BTC in a technical bear — 44% drawdown from $125K ATH with bearish MA stacking (price < 21 EMA < 50 SMA < 200 SMA, all declining). Testing the 2024 cycle breakout level ($65-75K) as support. Today's +2.24% bounce from $68K is the first test of whether this holds. RSI ~40-45 recovering from near-oversold. MACD deeply negative but histogram may be flattening. The old 2024 resistance is now critical support — a Murphy principle in action.", keyWatch: "$65K is the absolute line. Hold + reclaim 21 EMA ($78-80K) = bear market rally potential. Break below $65K = cycle support gone, targets $50K. BTC below all MAs while equities bounce = crypto NOT confirming risk-on. Yellow flag on the Broadening Rally thesis." },
   "ETH": { value: "$2,043", change: "+2.51%", signal: "Deep bear — weakest macro chart", color: "#EF4444", chartTime: "March 9, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/hWq5QwOJ/", levels: "$1,500-1,800 (deep support) · $2,000 (psych floor) · $2,043 ← HERE · $2,200-2,300 (21 EMA) · $2,500-2,700 (50 SMA) · $3,000+ (200 SMA) · $4,700 (ATH)", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14, 30/70)", analysis: "Weakest chart on the entire macro dashboard. 57% drawdown from $4,700 ATH with fully bearish MA stacking — price far below all three MAs with massive separation. RSI ~35-40 near oversold. MACD deeply negative. Today's +2.51% is a dead-cat bounce until price reclaims at least the 21 EMA ($2,200-2,300). ETH this weak while equities bounce = negative divergence, crypto not confirming risk-on.", keyWatch: "$2,000 is the psych floor. Below $2,000 = another leg toward $1,500-1,800. Above 21 EMA ($2,300) = first sign of stabilization. ETH structural weakness is a cautionary signal for the overall risk appetite thesis." },
   "ETH/BTC": { value: "0.02921", change: "+0.24%", signal: "BTC dominance — no alt season", color: "#F59E0B", chartTime: "March 9, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/wfqK9Cka/", levels: "0.022 (absolute floor) · 0.029 ← HERE · 0.031-032 (50 SMA) · 0.035 (200 SMA / alt season signal) · 0.042 (2025 bounce high) · 0.055+ (full alt season)", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · RSI (14) · MACD", analysis: "Relentless downtrend from 0.044 to 0.022 lows, bounced to 0.042, collapsed back to 0.029. Near multi-year lows confirming deep BTC dominance. 21 EMA (white, ~0.029-0.030) right at price. 50 SMA (orange, ~0.031-0.032) above. 200 SMA (purple, ~0.034-0.035) well above. Money in crypto is hiding in BTC, not venturing into alts. RSI ~40-45 neutral.", keyWatch: "0.022 = absolute floor, break below = structural ETH crisis. 0.035 (200 SMA) = the level to reclaim for any alt season signal. ETH/BTC turning up and climbing above 0.035 = rotate into higher-beta risk. Until then, BTC dominance continues. This is a LAGGING confirmation of risk-on — it turns after equities confirm." },
+  "XLK": { value: "$139.75", change: "-0.01%", signal: "Descending triangle — weak", color: "#F59E0B", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/2zeGVhrq/", levels: "Fib: 0.618 ($127.58) · 0.786 ($138.84) · 1.0 ($153.18 ATH) | 21 EMA ~$139 · 50 SMA ~$141 · 200 SMA ~$129", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14) · Fibonacci", analysis: "Descending triangle from $153 ATH — lower highs at $150, $148, $145 while holding $135 support. Price at $139.75 right at the 0.786 Fib ($138.84). 50 SMA (orange, ~$141) just above and curling down. 21 EMA flat at price. 200 SMA (~$129) below = primary uptrend intact but intermediate trend weakening. MACD at zero, no conviction. Confirms the QQQ read — tech is not leading.", keyWatch: "Hold $138.84 (0.786 Fib). Above $142 (50 SMA) = stabilizing. Below $135 = descending triangle breaks, targets $127. Tech-heavy High Growth stocks face a sector headwind." },
+  "XLV": { value: "$153.31", change: "-0.62%", signal: "Below 21/50 cluster — struggling", color: "#F59E0B", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/DC0QYEdu/", levels: "Fib: 0.618 ($147.97) · 0.786 ($153.56) · 1.0 ($160.68 ATH) | 21 EMA ~$154 · 50 SMA ~$154 · 200 SMA ~$146", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14) · Fibonacci", analysis: "21 EMA (white) just crossed down through 50 SMA (orange) — bearish crossover. Both MAs above price at ~$154-155 acting as resistance. Price at 0.786 Fib ($153.56) from below. 200 SMA (~$146) below as structural support. Healthcare not in freefall but stuck below its MAs trying to recover. Not the sector tailwind initially assumed.", keyWatch: "Reclaim $154-155 (21/50 SMA cluster) = recovery. Below $148 (0.618 Fib) = sector weakening. GLUE's individual setup still works on catalyst merits but can't rely on sector tide." },
+  "XLF": { value: "$49.87", change: "-0.91%", signal: "Below 200 SMA — broken", color: "#EF4444", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/XcbzULxZ/", levels: "Fib: 0.382 ($47.60) · 0.5 ($49.38) · 0.618 ($51.07) · 0.786 ($53.48) · 1.0 ($56.55 ATH) | All MAs above price", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14) · Fibonacci", analysis: "Broken chart. Price below ALL three MAs — full bearish stacking like BTC/ETH. Broke below 200 SMA, bouncing on 0.5 Fib ($49.38). RSI ~38-40 near oversold. MACD below zero. The VLUE leadership is NOT coming from financials. Filter OUT financial Maturity names until XLF reclaims 200 SMA.", keyWatch: "0.5 Fib ($49.38) is last support. Below = targets $47.60 (0.382). Reclaim 200 SMA (~$50-51) = first recovery sign. Avoid financial-sector stocks." },
+  "XLE": { value: "$55.70", change: "-1.10%", signal: "Geopolitical spike — diverging from oil", color: "#F59E0B", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/aiUKRRDB/", levels: "50 SMA ~$49 · 200 SMA ~$46 · Price above all MAs | $43-48 (old range) · $55-58 (current) · $60+ (if oil continues)", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14)", analysis: "Broke out from $42-48 range on Iran/Hormuz crisis. 21 EMA (white, ~$54-55) at price, 50 SMA (orange, ~$49) and 200 SMA (~$46) well below. Structure bullish but extended. KEY: XLE -1.10% today while WTI +3.46% = significant divergence. Market views oil spike as temporary or energy stocks already priced it in. Geopolitical dependency makes this high-risk.", keyWatch: "XLE-vs-oil divergence is a warning. If Hormuz de-escalates, XLE snaps back to $48-50. If oil hits $100, XLE runs to $60+. Better Maturity/value plays in non-energy sectors." },
+  "XLI": { value: "$170.38", change: "-0.33%", signal: "Orderly pullback — best sector structure", color: "#22C55E", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/EoloLPBP/", levels: "Fib: 0.786 ($165.10) · 1.0 ($179.32 ATH) | 21 EMA ~$170 · 50 SMA ~$167 · 200 SMA ~$156", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14) · Fibonacci", analysis: "One of the best sector charts. Orderly pullback from $179 ATH. 21 EMA (white, ~$170) right at price. 50 SMA (orange, ~$167) rising below as support net. 200 SMA (~$156) well below. No bearish crossovers. RSI ~55. This is likely where the VLUE ATH leadership is coming from — value industrials, not financials. Infrastructure, defense, machinery with real earnings growth.", keyWatch: "Hold 21 EMA ($170) or 50 SMA ($167). $165 (0.786 Fib) is strong support. Resume toward $175-179 ATH. Prime sector for Mature Growth + Maturity screening." },
+  "XLC": { value: "$117.21", change: "-0.30%", signal: "Near ATH — strong structure", color: "#22C55E", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/DNxrPUaN/", levels: "Fib: 0.786 ($112.62) · 1.0 ($120.41 ATH) | 21 EMA ~$117 · 50 SMA ~$114 · 200 SMA ~$109", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14) · Fibonacci", analysis: "Strong chart near ATH. Price above all three MAs. 21 EMA (white, ~$117) at price. 50 SMA (orange, ~$114) below and rising. 200 SMA (~$109) well below. Shallow pullback. META/GOOG outperforming semis/hardware = ad revenue more resilient than capex tech. Confirms Mature Growth quality thesis.", keyWatch: "$112-115 (0.786 + 50 SMA) is support. Sector tailwind for Mature Growth comms names with strong FCF." },
+  "XLY": { value: "$114.30", change: "-0.25%", signal: "On 200 SMA — knife edge", color: "#EF4444", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/bHNFcJc6/", levels: "Fib: 0.618 ($110.54) · 0.786 ($116.84) · 1.0 ($125.12 ATH) | 50 SMA ~$117 above · 200 SMA ~$114 at price", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14) · Fibonacci", analysis: "In trouble. 50 SMA (orange, ~$117) above and declining. 200 SMA (purple, ~$114) right at price — last line of defense. 21 EMA tangled with 200 SMA at $114-115. Everything compressed at one level. AMZN/TSLA/HD consumer names under pressure. Oil at $88 hurts consumer wallets directly. Break below 200 SMA targets $110.54 (0.618 Fib).", keyWatch: "$114-115 (200 SMA) is do-or-die. Avoid consumer discretionary High Growth names. The consumer is under pressure from elevated energy costs." },
+  "XLP": { value: "$85.55", change: "-0.49%", signal: "Defensive unwind — lost 0.786", color: "#F59E0B", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/TG2ntI5x/", levels: "Fib: 0.618 ($84.42) · 0.786 ($86.96) · 1.0 ($90.18 ATH) | 21 EMA ~$87 above · 50 SMA ~$85 at price · 200 SMA ~$83", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14) · Fibonacci", analysis: "Fear trade unwind. Staples broke out to $90 ATH on Growth Scare defensive rotation, now pulling back. Lost 0.786 ($86.96) and 21 EMA (white, ~$87). 50 SMA (orange, ~$85) at price as next support. Money rotating OUT of safety — mildly bullish for broader market. Don't chase staples after the pullback.", keyWatch: "50 SMA ($85) is the test. Hold = consolidate breakout. Fail = $90 was fear overshoot, targets $82-83 (200 SMA). Better Maturity plays in XLI." },
+  "XLU": { value: "$46.67", change: "-0.38%", signal: "Structural uptrend — AI power demand", color: "#22C55E", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/s3ZUpMIF/", levels: "21 EMA ~$46.50 · 50 SMA ~$44.50 · 200 SMA ~$42.50 | $43-44 (support) · $47+ (highs)", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14)", analysis: "Unexpectedly strong. Textbook bullish MA stacking — 200 SMA < 50 SMA < 21 EMA < price, all rising. Structural tailwind from AI data center power demand giving utilities revenue growth they haven't seen in decades. Outperforming XLRE despite rate sensitivity because AI narrative overrides rate headwind.", keyWatch: "21 EMA ($46.50) is short-term support. 50 SMA ($44.50) below. Utilities with data center exposure = high conviction Maturity picks. Unique sector where traditional Maturity companies have Mature Growth characteristics." },
+  "XLRE": { value: "$42.83", change: "-0.35%", signal: "Range-bound — hostage to rates", color: "#94A3B8", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/0htXJoSj/", levels: "$40 (range low) · $42-43 (all MAs converged) · $44 (range high) | All MAs flat at ~$42-43", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14)", analysis: "Dead money. All three MAs converged in a flat cluster at $42-43 with price. No trend, no direction. Range-bound $40-44 for a year, directly inverse to 10Y yield range. 30Y at 4.75% and rising is the headwind. REITs can't rally until long rates stabilize. Today -0.35% on 30Y +0.72% confirms the inverse.", keyWatch: "Only works if CPI cool → rates drop. Otherwise skip. Avoid for Maturity positioning — wrong way to play value rotation when rates trending higher." },
+  "IGV": { value: "$85.53", change: "-2.49%", signal: "Bear market — worst sector chart", color: "#EF4444", chartTime: "March 10, 2026 — Daily", chartUrl: "https://www.tradingview.com/x/SZfHDPPD/", levels: "All MAs above: 21 EMA ~$91 · 50 SMA ~$97 · 200 SMA ~$101 | $85 current · $113 double-top ATH", indicators: "21 EMA (white) · 50 SMA (orange) · 200 SMA (purple) · MACD · RSI (14)", analysis: "WORST sector chart on the dashboard. Full bear market — 25% drawdown from $113 double-top. Bearish MA stacking (price < 21 EMA < 50 SMA < 200 SMA, all declining). RSI near 30 oversold. MACD deeply negative. -2.49% on a flat market day = active liquidation. SaaS/cloud names being repriced as growth-at-any-price trade unwinds. The strongest argument against Young Growth positioning.", keyWatch: "RSI 30 may produce an oversold bounce but in a bear market these are selling opportunities. Needs to reclaim 21 EMA ($91+) before any software name is actionable. DO NOT buy software/SaaS from the lifecycle model right now." },
 };
 
 const MACRO = {
@@ -326,7 +338,7 @@ function App() {
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#94A3B8", marginBottom: 8 }}>Sector Performance</div>
             <div style={{ background: "#131B2E", border: "1px solid #1E293B", borderRadius: 9, overflow: "hidden" }}>
               {d.sectors.map((s,i) => (
-                <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "6px 14px", borderBottom: i<d.sectors.length-1 ? "1px solid #1A2336" : "none", background: i%2===0 ? "#FAFBFC" : "#FFF" }}>
+                <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "6px 14px", borderBottom: i<d.sectors.length-1 ? "1px solid #1A2336" : "none", background: i%2===0 ? "#131B2E" : "#0F1628" }}>
                   <span style={{ fontSize: 12, color: "#CBD5E1" }}>{s.s}</span>
                   <span style={{ fontSize: 12, fontWeight: 700, color: s.clr, fontVariantNumeric: "tabular-nums" }}>{s.c}</span>
                 </div>
@@ -342,19 +354,78 @@ function App() {
 
           {/* Calendar */}
           <div style={{ background: "#131B2E", border: "1px solid #1E293B", borderRadius: 9, overflow: "hidden" }}>
-            <div style={{ background: "#1E293B", padding: "8px 14px", fontSize: 10, fontWeight: 700, color: "#94A3B8", letterSpacing: 1.5, textTransform: "uppercase" }}>Economic Calendar</div>
-            {d.calendar.map((e,i) => (
-              <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 14px", borderBottom: i<d.calendar.length-1 ? "1px solid #1A2336" : "none", background: e.i==="Critical" ? "#FEF2F2" : i%2===0 ? "#FAFBFC" : "#FFF" }}>
-                <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
-                  <span style={{ fontSize: 11, fontWeight: 700, color: "#64748B", minWidth: 45 }}>{e.d}</span>
-                  <span style={{ fontSize: 12, color: "#E2E8F0", fontWeight: e.i==="Critical" ? 700 : 400 }}>{e.e}</span>
+            <div style={{ background: "#1E293B", padding: "10px 14px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{ fontSize: 10, fontWeight: 700, color: "#94A3B8", letterSpacing: 1.5, textTransform: "uppercase" }}>March 2026</span>
+              <span style={{ fontSize: 10, color: "#64748B" }}>Economic Calendar</span>
+            </div>
+            {/* Day headers */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", borderBottom: "1px solid #1A2336" }}>
+              {["Mon","Tue","Wed","Thu","Fri"].map(d => (
+                <div key={d} style={{ padding: "6px 0", textAlign: "center", fontSize: 9, fontWeight: 700, color: "#64748B", letterSpacing: 1 }}>{d}</div>
+              ))}
+            </div>
+            {/* Week 1: Mar 9-14 (current week) */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)" }}>
+              {[
+                { day: 9, events: [], today: false },
+                { day: 10, events: [{ e: "NY Fed Inflation Exp.", i: "Medium" }], today: true },
+                { day: 11, events: [{ e: "JOLTS", i: "Medium" }], today: false },
+                { day: 12, events: [{ e: "CPI (Feb)", i: "Critical" }], today: false },
+                { day: 13, events: [{ e: "PPI (Feb)", i: "Medium" }], today: false },
+              ].map((d,idx) => (
+                <div key={idx} style={{ padding: "8px 6px", borderRight: idx<4 ? "1px solid #1A2336" : "none", borderBottom: "1px solid #1A2336", background: d.today ? "#1A2336" : "transparent", minHeight: 70 }}>
+                  <div style={{ fontSize: 13, fontWeight: d.today ? 800 : 600, color: d.today ? "#3B82F6" : "#CBD5E1", marginBottom: 4 }}>{d.day}</div>
+                  {d.events.map((ev,j) => (
+                    <div key={j} style={{ fontSize: 9, padding: "3px 5px", borderRadius: 3, marginBottom: 2, fontWeight: 600,
+                      background: ev.i==="Critical" ? "#7F1D1D" : ev.i==="Position" ? "#1E3A5F" : "#1A2336",
+                      color: ev.i==="Critical" ? "#FCA5A5" : ev.i==="Position" ? "#93C5FD" : "#94A3B8",
+                      border: ev.i==="Critical" ? "1px solid #DC2626" : "1px solid transparent"
+                    }}>{ev.e}</div>
+                  ))}
                 </div>
-                <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", padding: "2px 7px", borderRadius: 3,
-                  background: e.i==="Critical"?"#DC2626":e.i==="Position"?"#EFF6FF":"#F0FDF4",
-                  color: e.i==="Critical"?"#FFF":e.i==="Position"?"#2563EB":"#16A34A"
-                }}>{e.i}</span>
-              </div>
-            ))}
+              ))}
+            </div>
+            {/* Week 1 continued: Mar 14 */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)" }}>
+              {[
+                { day: 14, events: [{ e: "Mich. Sentiment", i: "Medium" }], today: false },
+                { day: "", events: [], today: false },
+                { day: "", events: [], today: false },
+                { day: "", events: [], today: false },
+                { day: "", events: [], today: false },
+              ].map((d,idx) => idx === 0 ? (
+                <div key={idx} style={{ padding: "8px 6px", borderRight: "1px solid #1A2336", borderBottom: "1px solid #1A2336", minHeight: 70 }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "#CBD5E1", marginBottom: 4 }}>14</div>
+                  <div style={{ fontSize: 9, padding: "3px 5px", borderRadius: 3, background: "#1A2336", color: "#94A3B8", fontWeight: 600 }}>Mich. Sentiment</div>
+                </div>
+              ) : null)}
+            </div>
+            {/* Week 2: Mar 16-20 */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)" }}>
+              {[
+                { day: 16, events: [], today: false },
+                { day: 17, events: [{ e: "Retail Sales", i: "Medium" }], today: false },
+                { day: 18, events: [{ e: "FOMC Day 1", i: "Critical" }, { e: "GLUE Earnings", i: "Position" }], today: false },
+                { day: 19, events: [{ e: "FOMC Decision", i: "Critical" }, { e: "Powell Presser", i: "Critical" }], today: false },
+                { day: 20, events: [{ e: "Jobless Claims", i: "Medium" }], today: false },
+              ].map((d,idx) => (
+                <div key={idx} style={{ padding: "8px 6px", borderRight: idx<4 ? "1px solid #1A2336" : "none", borderBottom: "1px solid #1A2336", minHeight: 70 }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "#CBD5E1", marginBottom: 4 }}>{d.day}</div>
+                  {d.events.map((ev,j) => (
+                    <div key={j} style={{ fontSize: 9, padding: "3px 5px", borderRadius: 3, marginBottom: 2, fontWeight: 600,
+                      background: ev.i==="Critical" ? "#7F1D1D" : ev.i==="Position" ? "#1E3A5F" : "#1A2336",
+                      color: ev.i==="Critical" ? "#FCA5A5" : ev.i==="Position" ? "#93C5FD" : "#94A3B8",
+                      border: ev.i==="Critical" ? "1px solid #DC2626" : ev.i==="Position" ? "1px solid #2563EB" : "1px solid transparent"
+                    }}>{ev.e}</div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div style={{ padding: "6px 10px", fontSize: 9, color: "#64748B", display: "flex", gap: 12 }}>
+              <span><span style={{ display:"inline-block",width:8,height:8,borderRadius:2,background:"#7F1D1D",border:"1px solid #DC2626",marginRight:3,verticalAlign:"middle" }}></span>Critical</span>
+              <span><span style={{ display:"inline-block",width:8,height:8,borderRadius:2,background:"#1E3A5F",border:"1px solid #2563EB",marginRight:3,verticalAlign:"middle" }}></span>Position</span>
+              <span><span style={{ display:"inline-block",width:8,height:8,borderRadius:2,background:"#1A2336",marginRight:3,verticalAlign:"middle" }}></span>Data</span>
+            </div>
           </div>
         </div>)}
 
@@ -415,7 +486,7 @@ function App() {
               {r.sects.map((s,i) => {
                 const k = r.ticker+"-"+i; const isOpen = expSect[k];
                 return (<div key={i}>
-                  <div onClick={() => setExpSect(p=>({...p,[k]:!p[k]}))} style={{ padding:"10px 18px",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",background:isOpen?"#F8FAFC":"#FFF",borderBottom:"1px solid #1A2336" }}>
+                  <div onClick={() => setExpSect(p=>({...p,[k]:!p[k]}))} style={{ padding:"10px 18px",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",background:isOpen?"#1A2336":"#131B2E",borderBottom:"1px solid #1A2336" }}>
                     <span style={{ fontSize:13,fontWeight:600,color:"#E2E8F0" }}>{s.t}</span>
                     <span style={{ fontSize:13,color:"#94A3B8",transform:isOpen?"rotate(180deg)":"none",transition:"transform 0.15s" }}>▾</span>
                   </div>
@@ -443,8 +514,8 @@ function App() {
                 <div style={{ display:"flex",alignItems:"center",gap:6 }}>
                   <span style={{ fontSize:14,fontWeight:700,color:"#F1F5F9" }}>{ph.n}</span>
                   <span style={{ fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:3,letterSpacing:0.5,
-                    background:ph.s==="Complete"?"#F0FDF4":ph.s==="Active"?"#EFF6FF":ph.s==="In Progress"?"#FFF7ED":"#F8FAFC",
-                    color:ph.s==="Complete"?"#16A34A":ph.s==="Active"?"#2563EB":ph.s==="In Progress"?"#EA580C":"#94A3B8"
+                    background:ph.s==="Complete"?"#0A1F12":ph.s==="Active"?"#0C1A2E":ph.s==="In Progress"?"#1A1206":"#131B2E",
+                    color:ph.s==="Complete"?"#4ADE80":ph.s==="Active"?"#60A5FA":ph.s==="In Progress"?"#FB923C":"#94A3B8"
                   }}>{ph.s}</span>
                 </div>
                 <div style={{ fontSize:12,color:"#64748B",marginTop:3 }}>{ph.d}</div>
