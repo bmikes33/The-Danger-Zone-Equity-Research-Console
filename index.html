@@ -29,45 +29,75 @@ const { useState } = React;
 // ============================================================
 const UPDATED = "March 9, 2026 — 10:46 PM ET";
 
+const INSTRUMENT_GROUPS = [
+  { name: "Volatility", color: "#EF4444", instruments: ["VIX", "VVIX", "MOVE"] },
+  { name: "Credit", color: "#8B5CF6", instruments: ["HYG", "LQD"] },
+  { name: "Equity Indexes", color: "#3B82F6", instruments: ["SPY", "QQQ", "IWM", "RSP"] },
+  { name: "Factors", color: "#06B6D4", instruments: ["MTUM", "QUAL"] },
+  { name: "Rates & Currency", color: "#F59E0B", instruments: ["US 10Y", "US 2Y", "DXY"] },
+  { name: "Commodities", color: "#22C55E", instruments: ["Gold", "Copper", "Oil"] },
+  { name: "Crypto", color: "#F97316", instruments: ["BTC"] },
+];
+
 const INSTRUMENT_DETAILS = {
   "VIX": {
     value: "25.51", change: "-13.5%", signal: "Collapsing toward 25 support", color: "#22C55E",
     chartTime: "March 9, 2026 — Daily",
+    chartUrl: "https://www.tradingview.com/x/29JqmmHb/",
     levels: "12 (complacency) · 16 (normal floor) · 20 (regime line) · 25 (elevated) · 30 (fear) · 40 (crisis)",
     indicators: "10 SMA · Bollinger Bands (20, 2.0) · RSI (14, 20/80)",
-    analysis: "VIX collapsed 13.5% from 35+ intraday to close at 25.51 — right on the 25 horizontal. The 10 SMA (~27-28) was sliced through to the downside, which is bearish for VIX and bullish for equities. Bollinger Bands are wide from the recent spike and price is heading toward the middle band. RSI at ~55-60 is falling but was never at the 80 extreme, meaning this spike wasn't as panic-driven as April 2025. Key decision point: VIX is sitting exactly on the 25 level. A close below 25 tomorrow confirms fear is subsiding and targets the 20 transition line. Below 20 = full risk-on regime.",
-    keyWatch: "Needs to break and hold below 25. CPI Wednesday (Mar 12) is the catalyst. Hot CPI could spike VIX back above 30. Inline/cool CPI should push VIX toward 20.",
+    analysis: "VIX collapsed 13.5% from 35+ intraday to close at 25.51 — right on the 25 horizontal. The 10 SMA (~27-28) was sliced through to the downside, bearish for VIX and bullish for equities. Bollinger Bands wide from the spike, price heading toward middle band. RSI at ~55-60 falling but never hit the 80 extreme, meaning this spike wasn't as panic-driven as April 2025. Decision point: sitting exactly on the 25 level.",
+    keyWatch: "Needs to break and hold below 25. CPI Wednesday is the catalyst. Hot CPI → VIX back above 30. Cool CPI → VIX toward 20.",
   },
   "VVIX": {
     value: "122.60", change: "-12.7%", signal: "Still at warning level", color: "#F59E0B",
     chartTime: "March 9, 2026 — Daily",
+    chartUrl: "https://www.tradingview.com/x/gM7pNVZ1/",
     levels: "80 (floor) · 90 (normal) · 100 (baseline) · 110 (elevated) · 120 (warning) · 140 (high alert) · 160 (panic)",
     indicators: "10 SMA · Bollinger Bands (20, 2.0) · RSI (14)",
-    analysis: "VVIX dropped 12.7% but closed at 122.60 — still above the 120 warning level. Intraday low was ~118. The 10 SMA sits around 113-115 and price remains above it, so the vol-of-vol trend hasn't fully reversed yet. Bollinger Bands are expanded from recent stress. RSI around 60 and declining from elevated territory but not extreme. The options market is still pricing in the possibility of another VIX spike — VVIX above 120 means hedging demand remains elevated even as VIX itself drops.",
-    keyWatch: "Watch for VVIX to break below 110 — that's the true all-clear signal. Below the 10 SMA (~113) would confirm de-escalation. VVIX typically leads VIX by 1-2 days, so if VVIX continues falling tomorrow, it's bullish confirmation.",
+    analysis: "VVIX dropped 12.7% but closed at 122.60 — still above the 120 warning level. Intraday low ~118. The 10 SMA (~113-115) still below price, so vol-of-vol trend hasn't fully reversed. Bollinger Bands expanded from stress. RSI ~60 declining. Options market still pricing in possible VIX spike — VVIX above 120 = hedging demand elevated even as VIX drops.",
+    keyWatch: "Watch for VVIX to break below 110 — the true all-clear. Below 10 SMA (~113) confirms de-escalation. VVIX typically leads VIX by 1-2 days.",
   },
   "MOVE": {
     value: "79.74", change: "-1.9%", signal: "Right at the 80 threshold", color: "#F59E0B",
     chartTime: "March 9, 2026 — Daily",
+    chartUrl: "https://www.tradingview.com/x/uRag3Cbe/",
     levels: "55 (extreme calm) · 70 (calm) · 80 (key threshold) · 100 (elevated) · 120 (stress) · 150 (crisis)",
     indicators: "20 SMA + 50 SMA · Bollinger Bands (20, 2.5) · RSI (14)",
-    analysis: "MOVE at 79.74 — just barely below the critical 80 level. The chart shows a massive decline from 100+ in April 2025 down to the 55-60 range by late 2025, then a sharp reversal back up to ~80. The 20 SMA (~72-74) has been crossed to the upside, meaning bond volatility is trending higher. The 50 SMA (~68-70) is also rising. Price is touching the upper Bollinger Band area, suggesting this bounce in bond vol may be stretched and could pull back. RSI at ~60 has been climbing but isn't overbought.",
-    keyWatch: "80 is the knife's edge. Below 80 = green light for equities. Above 80 = bond market uncertainty not resolved. CPI Wednesday is THE catalyst — a hot print pushes MOVE decisively above 80 and triggers Rate Shock conditions. Cool CPI should send MOVE back toward 70.",
+    analysis: "MOVE at 79.74 — just below the critical 80 level. Massive decline from 100+ in April 2025 to 55-60 by late 2025, then sharp reversal back to ~80. The 20 SMA (~72-74) crossed to the upside — bond vol trending higher. 50 SMA (~68-70) rising. Price touching upper Bollinger Band area, suggesting bounce in bond vol may be stretched. RSI ~60 climbing but not overbought.",
+    keyWatch: "80 is the knife's edge. Below 80 = green light. Above 80 = bond uncertainty unresolved. CPI Wednesday is THE catalyst — hot print pushes MOVE above 80, cool print sends it toward 70.",
   },
-  "SPY": { value: "678.27", change: "+0.88%", signal: "Green", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending — send daily chart screenshot.", keyWatch: "" },
-  "QQQ": { value: "607.76", change: "+1.34%", signal: "Leading", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "IWM": { value: "253.62", change: "+1.09%", signal: "Participating", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "RSP": { value: "198.71", change: "+0.28%", signal: "Breadth OK", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "MTUM": { value: "247.24", change: "+2.39%", signal: "Leading!", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "QUAL": { value: "200.71", change: "+1.03%", signal: "Strong", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "HYG": { value: "80.17", change: "+0.60%", signal: "Stable ✓", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "US 10Y": { value: "4.109%", change: "+0.17%", signal: "Stable", color: "#F59E0B", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "US 2Y": { value: "3.559%", change: "+0.25%", signal: "Mild uptick", color: "#F59E0B", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "DXY": { value: "98.86", change: "+0.13%", signal: "Weak dollar ✓", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "Gold": { value: "$5,178", change: "+0.77%", signal: "ATH area", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "Copper": { value: "$82.24", change: "+2.86%", signal: "Dr. Copper bullish", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "Oil": { value: "$87.65", change: "+3.03%", signal: "Demand signal", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
-  "BTC": { value: "$70,538", change: "+3.08%", signal: "Risk-on confirmed", color: "#22C55E", chartTime: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "HYG": {
+    value: "80.17", change: "+0.60%", signal: "Holding range — neutral", color: "#22C55E",
+    chartTime: "March 9, 2026 — Daily",
+    chartUrl: "https://www.tradingview.com/x/k57kMcpt/",
+    levels: "75 (crisis) · 77 (major support) · 79 (stress) · 80 (psych) · 80.50 (50 SMA) · 81 (resistance) · 81.50 (52-wk high)",
+    indicators: "50 SMA + 200 SMA · Bollinger Bands (20, 2.0) · RSI (14, 30/70) · Volume",
+    analysis: "Range-bound $79-$81.50 since mid-2025 — healthy, stable credit. 50 SMA (~$80.50) and 200 SMA (~$80.00) nearly converged — squeeze that resolves with next catalyst. Price bounced off $79 stress level, testing 200 SMA from below. RSI recovered from low 30s (strong buy signal) to 45-50 neutral. Key bullish divergence: despite record $9.6B junk bond outflows, price held $79.",
+    keyWatch: "Reclaim 50 SMA at $80.50 to confirm. Above $81 = risk-on. Below $79.50 = Growth Scare not over. Compare to SPY for divergence signals.",
+  },
+  "LQD": {
+    value: "$110.82", change: "+0.43%", signal: "At inflection — neutral", color: "#F59E0B",
+    chartTime: "March 9, 2026 — Daily",
+    chartUrl: "https://www.tradingview.com/x/CEnTpCQO/",
+    levels: "103 (crisis) · 105 (stress) · 108 (support) · 110-111 (MA cluster) · 112 (resistance) · 113 (52-wk high)",
+    indicators: "50 SMA + 200 SMA · Bollinger Bands (20, 2.0) · RSI (14, 30/70)",
+    analysis: "Rate story chart. Peaked $113 Sep 2024, sold to $105 April 2025 (rate spike), bounced to $112 Sep 2025, drifting lower into $108-112 range. 50 SMA (~$110.50) trending down, 200 SMA (~$110) flat — price sandwiched at decision point. Death cross risk if 50 breaks below 200. RSI ~50 neutral. Bond market in wait-and-see mode.",
+    keyWatch: "CPI resolves this: cool → $112 (bullish growth). Hot → $108 (bearish High Growth). Both HYG and LQD rising modestly = neutral credit, giving equities benefit of doubt.",
+  },
+  "SPY": { value: "678.27", change: "+0.88%", signal: "Green", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending — send daily chart screenshot.", keyWatch: "" },
+  "QQQ": { value: "607.76", change: "+1.34%", signal: "Leading", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "IWM": { value: "253.62", change: "+1.09%", signal: "Participating", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "RSP": { value: "198.71", change: "+0.28%", signal: "Breadth OK", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "MTUM": { value: "247.24", change: "+2.39%", signal: "Leading!", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "QUAL": { value: "200.71", change: "+1.03%", signal: "Strong", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "US 10Y": { value: "4.109%", change: "+0.17%", signal: "Stable", color: "#F59E0B", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "US 2Y": { value: "3.559%", change: "+0.25%", signal: "Mild uptick", color: "#F59E0B", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "DXY": { value: "98.86", change: "+0.13%", signal: "Weak dollar ✓", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "Gold": { value: "$5,178", change: "+0.77%", signal: "ATH area", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "Copper": { value: "$82.24", change: "+2.86%", signal: "Dr. Copper bullish", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "Oil": { value: "$87.65", change: "+3.03%", signal: "Demand signal", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
+  "BTC": { value: "$70,538", change: "+3.08%", signal: "Risk-on confirmed", color: "#22C55E", chartTime: "", chartUrl: "", levels: "", indicators: "", analysis: "Chart analysis pending.", keyWatch: "" },
 };
 
 const MACRO = {
@@ -146,6 +176,7 @@ function InstrumentModal({ name, onClose }) {
         <div style={{ fontSize: 12, fontWeight: 600, color: d.color, marginBottom: 16 }}>{d.signal}</div>
 
         {hasAnalysis ? (<>
+          {d.chartUrl && <div style={{ marginBottom: 14, borderRadius: 8, overflow: "hidden", border: "1px solid #334155" }}><img src={d.chartUrl} alt={name + " chart"} style={{ width: "100%", display: "block" }} /></div>}
           {d.chartTime && <div style={{ fontSize: 11, color: "#64748B", marginBottom: 12 }}>Chart: {d.chartTime}</div>}
           {d.levels && (<div style={{ marginBottom: 14 }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#64748B", marginBottom: 5 }}>Key Levels</div>
@@ -239,36 +270,44 @@ function App() {
             ))}
           </div>
 
-          {/* Clickable Instruments */}
+          {/* Grouped Instruments */}
           <div style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#94A3B8", marginBottom: 8 }}>
               Key Instruments <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>— click for analysis</span>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(170px,1fr))", gap: 6 }}>
-              {instruments.map(name => {
-                const k = INSTRUMENT_DETAILS[name];
-                const hasDetail = k.analysis && !k.analysis.includes("pending");
-                return (
-                  <div key={name} className="inst-card" onClick={() => setModal(name)} style={{
-                    background: "#FFF", border: "1px solid #E2E8F0", borderLeft: "3px solid "+k.color, borderRadius: 7, padding: "8px 12px",
-                    position: "relative",
-                  }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <div style={{ fontSize: 10, color: "#94A3B8", fontWeight: 600 }}>{name}</div>
-                      {hasDetail && <div style={{ width: 6, height: 6, borderRadius: 3, background: "#3B82F6" }} title="Chart analysis available" />}
-                    </div>
-                    <div style={{ display: "flex", alignItems: "baseline", gap: 5, margin: "2px 0" }}>
-                      <span style={{ fontSize: 16, fontWeight: 700, color: "#0F172A" }}>{k.value}</span>
-                      <span style={{ fontSize: 11, fontWeight: 700, color: k.change?.startsWith("-") ? "#EF4444" : "#22C55E" }}>{k.change}</span>
-                    </div>
-                    <div style={{ fontSize: 10, color: k.color, fontWeight: 600 }}>{k.signal}</div>
-                  </div>
-                );
-              })}
-            </div>
+            {INSTRUMENT_GROUPS.map(group => (
+              <div key={group.name} style={{ marginBottom: 12 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: group.color, marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}>
+                  <div style={{ width: 10, height: 3, background: group.color, borderRadius: 2 }}></div>
+                  {group.name}
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(170px,1fr))", gap: 6 }}>
+                  {group.instruments.map(name => {
+                    const k = INSTRUMENT_DETAILS[name];
+                    if (!k) return null;
+                    const hasDetail = k.analysis && !k.analysis.includes("pending");
+                    return (
+                      <div key={name} className="inst-card" onClick={() => setModal(name)} style={{
+                        background: "#FFF", border: "1px solid #E2E8F0", borderLeft: "3px solid "+k.color, borderRadius: 7, padding: "8px 12px",
+                      }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <div style={{ fontSize: 10, color: "#94A3B8", fontWeight: 600 }}>{name}</div>
+                          {hasDetail && <div style={{ width: 6, height: 6, borderRadius: 3, background: "#3B82F6" }} title="Chart analysis available" />}
+                        </div>
+                        <div style={{ display: "flex", alignItems: "baseline", gap: 5, margin: "2px 0" }}>
+                          <span style={{ fontSize: 16, fontWeight: 700, color: "#0F172A" }}>{k.value}</span>
+                          <span style={{ fontSize: 11, fontWeight: 700, color: k.change?.startsWith("-") ? "#EF4444" : "#22C55E" }}>{k.change}</span>
+                        </div>
+                        <div style={{ fontSize: 10, color: k.color, fontWeight: 600 }}>{k.signal}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
             <div style={{ fontSize: 10, color: "#94A3B8", marginTop: 6 }}>
               <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: 3, background: "#3B82F6", marginRight: 4 }}></span>
-              Blue dot = chart analysis available. Click any instrument for details.
+              Blue dot = chart analysis with TradingView snapshot available. Click any card.
             </div>
           </div>
 
