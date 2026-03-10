@@ -10,13 +10,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.5/babel.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'DM Sans', -apple-system, sans-serif; background: #F8FAFC; }
+        body { font-family: 'DM Sans', -apple-system, sans-serif; background: #0B0F19; }
         button { font-family: inherit; }
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
         .modal-content { background: #0F172A; border-radius: 14px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 24px; position: relative; }
         .modal-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: #94A3B8; font-size: 22px; cursor: pointer; }
         .inst-card { cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; }
-        .inst-card:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .inst-card:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.4); }
     </style>
 </head>
 <body>
@@ -219,7 +219,7 @@ function App() {
   const instruments = Object.keys(INSTRUMENT_DETAILS);
 
   return (
-    <div style={{ minHeight: "100vh", background: "#F8FAFC" }}>
+    <div style={{ minHeight: "100vh", background: "#0F1628" }}>
       {modal && <InstrumentModal name={modal} onClose={() => setModal(null)} />}
 
       {/* NAV */}
@@ -245,26 +245,26 @@ function App() {
 
         {/* MACRO */}
         {tab === "macro" && (<div>
-          <h2 style={{ fontSize: 19, fontWeight: 800, color: "#0F172A", marginBottom: 14 }}>Macro Dashboard</h2>
+          <h2 style={{ fontSize: 19, fontWeight: 800, color: "#F1F5F9", marginBottom: 14 }}>Macro Dashboard</h2>
 
           <div style={{ background: d.regimeColor+"10", border: "1px solid "+d.regimeColor+"30", borderRadius: 12, padding: "18px 22px", marginBottom: 16 }}>
             <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
               <div>
                 <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: d.regimeColor }}>Current Regime</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: "#0F172A", marginTop: 4 }}>{d.regime}</div>
+                <div style={{ fontSize: 24, fontWeight: 800, color: "#F1F5F9", marginTop: 4 }}>{d.regime}</div>
               </div>
               <div style={{ fontSize: 10, color: "#94A3B8", textAlign: "right" }}>Updated<br/><b style={{ color: "#64748B" }}>{UPDATED}</b></div>
             </div>
-            <p style={{ fontSize: 13, color: "#475569", marginTop: 12, lineHeight: 1.65 }}>{d.desc}</p>
+            <p style={{ fontSize: 13, color: "#94A3B8", marginTop: 12, lineHeight: 1.65 }}>{d.desc}</p>
           </div>
 
           {/* Stage Bias */}
           <div style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#94A3B8", marginBottom: 8 }}>Stage Positioning</div>
             {d.stageBias.map(s => (
-              <div key={s.stage} style={{ display: "flex", alignItems: "center", gap: 10, background: "#FFF", border: "1px solid #E2E8F0", borderLeft: "3px solid "+s.color, borderRadius: 7, padding: "7px 12px", marginBottom: 5 }}>
+              <div key={s.stage} style={{ display: "flex", alignItems: "center", gap: 10, background: "#131B2E", border: "1px solid #1E293B", borderLeft: "3px solid "+s.color, borderRadius: 7, padding: "7px 12px", marginBottom: 5 }}>
                 <span style={{ fontSize: 15 }}>{s.icon}</span>
-                <span style={{ fontSize: 12, fontWeight: 600, color: "#334155", minWidth: 110 }}>{s.stage}</span>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "#CBD5E1", minWidth: 110 }}>{s.stage}</span>
                 <span style={{ fontSize: 12, fontWeight: 800, color: s.color, minWidth: 85 }}>{s.bias}</span>
                 <span style={{ fontSize: 11, color: "#94A3B8" }}>{s.note}</span>
               </div>
@@ -289,14 +289,14 @@ function App() {
                     const hasDetail = k.analysis && !k.analysis.includes("pending");
                     return (
                       <div key={name} className="inst-card" onClick={() => setModal(name)} style={{
-                        background: "#FFF", border: "1px solid #E2E8F0", borderLeft: "3px solid "+k.color, borderRadius: 7, padding: "8px 12px",
+                        background: "#131B2E", border: "1px solid #1E293B", borderLeft: "3px solid "+k.color, borderRadius: 7, padding: "8px 12px",
                       }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                           <div style={{ fontSize: 10, color: "#94A3B8", fontWeight: 600 }}>{name}</div>
                           {hasDetail && <div style={{ width: 6, height: 6, borderRadius: 3, background: "#3B82F6" }} title="Chart analysis available" />}
                         </div>
                         <div style={{ display: "flex", alignItems: "baseline", gap: 5, margin: "2px 0" }}>
-                          <span style={{ fontSize: 16, fontWeight: 700, color: "#0F172A" }}>{k.value}</span>
+                          <span style={{ fontSize: 16, fontWeight: 700, color: "#F1F5F9" }}>{k.value}</span>
                           <span style={{ fontSize: 11, fontWeight: 700, color: k.change?.startsWith("-") ? "#EF4444" : "#22C55E" }}>{k.change}</span>
                         </div>
                         <div style={{ fontSize: 10, color: k.color, fontWeight: 600 }}>{k.signal}</div>
@@ -315,10 +315,10 @@ function App() {
           {/* Sectors */}
           <div style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#94A3B8", marginBottom: 8 }}>Sector Performance</div>
-            <div style={{ background: "#FFF", border: "1px solid #E2E8F0", borderRadius: 9, overflow: "hidden" }}>
+            <div style={{ background: "#131B2E", border: "1px solid #1E293B", borderRadius: 9, overflow: "hidden" }}>
               {d.sectors.map((s,i) => (
-                <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "6px 14px", borderBottom: i<d.sectors.length-1 ? "1px solid #F1F5F9" : "none", background: i%2===0 ? "#FAFBFC" : "#FFF" }}>
-                  <span style={{ fontSize: 12, color: "#334155" }}>{s.s}</span>
+                <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "6px 14px", borderBottom: i<d.sectors.length-1 ? "1px solid #1A2336" : "none", background: i%2===0 ? "#FAFBFC" : "#FFF" }}>
+                  <span style={{ fontSize: 12, color: "#CBD5E1" }}>{s.s}</span>
                   <span style={{ fontSize: 12, fontWeight: 700, color: s.clr, fontVariantNumeric: "tabular-nums" }}>{s.c}</span>
                 </div>
               ))}
@@ -332,13 +332,13 @@ function App() {
           </div>
 
           {/* Calendar */}
-          <div style={{ background: "#FFF", border: "1px solid #E2E8F0", borderRadius: 9, overflow: "hidden" }}>
+          <div style={{ background: "#131B2E", border: "1px solid #1E293B", borderRadius: 9, overflow: "hidden" }}>
             <div style={{ background: "#1E293B", padding: "8px 14px", fontSize: 10, fontWeight: 700, color: "#94A3B8", letterSpacing: 1.5, textTransform: "uppercase" }}>Economic Calendar</div>
             {d.calendar.map((e,i) => (
-              <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 14px", borderBottom: i<d.calendar.length-1 ? "1px solid #F1F5F9" : "none", background: e.i==="Critical" ? "#FEF2F2" : i%2===0 ? "#FAFBFC" : "#FFF" }}>
+              <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 14px", borderBottom: i<d.calendar.length-1 ? "1px solid #1A2336" : "none", background: e.i==="Critical" ? "#FEF2F2" : i%2===0 ? "#FAFBFC" : "#FFF" }}>
                 <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
                   <span style={{ fontSize: 11, fontWeight: 700, color: "#64748B", minWidth: 45 }}>{e.d}</span>
-                  <span style={{ fontSize: 12, color: "#1E293B", fontWeight: e.i==="Critical" ? 700 : 400 }}>{e.e}</span>
+                  <span style={{ fontSize: 12, color: "#E2E8F0", fontWeight: e.i==="Critical" ? 700 : 400 }}>{e.e}</span>
                 </div>
                 <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", padding: "2px 7px", borderRadius: 3,
                   background: e.i==="Critical"?"#DC2626":e.i==="Position"?"#EFF6FF":"#F0FDF4",
@@ -351,17 +351,17 @@ function App() {
 
         {/* WATCHLIST */}
         {tab === "watchlist" && (<div>
-          <h2 style={{ fontSize: 19, fontWeight: 800, color: "#0F172A", marginBottom: 14 }}>Active Watchlist</h2>
+          <h2 style={{ fontSize: 19, fontWeight: 800, color: "#F1F5F9", marginBottom: 14 }}>Active Watchlist</h2>
           {WATCHLIST.map(s => {
             const st = STG[s.stage]||{};
             const open = expStock === s.ticker;
-            return (<div key={s.ticker} style={{ background:"#FFF", border:"1px solid #E2E8F0", borderRadius:11, marginBottom:10, overflow:"hidden", boxShadow: open?"0 4px 16px rgba(0,0,0,0.06)":"none" }}>
+            return (<div key={s.ticker} style={{ background:"#131B2E", border:"1px solid #1E293B", borderRadius:11, marginBottom:10, overflow:"hidden", boxShadow: open?"0 4px 16px rgba(0,0,0,0.06)":"none" }}>
               <div onClick={() => setExpStock(open?null:s.ticker)} style={{ padding:"14px 18px", cursor:"pointer", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                 <div style={{ display:"flex", alignItems:"center", gap:12 }}>
                   <div style={{ width:40,height:40,borderRadius:9,display:"flex",alignItems:"center",justifyContent:"center",background:st.bg,fontSize:18,border:"1px solid "+st.c+"30" }}>{st.i}</div>
                   <div>
                     <div style={{ display:"flex",alignItems:"center",gap:6,flexWrap:"wrap" }}>
-                      <span style={{ fontSize:17,fontWeight:800,color:"#0F172A" }}>{s.ticker}</span>
+                      <span style={{ fontSize:17,fontWeight:800,color:"#F1F5F9" }}>{s.ticker}</span>
                       <span style={{ fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:4,background:st.bg,color:st.c,textTransform:"uppercase",letterSpacing:0.5 }}>{s.stage}</span>
                       <span style={{ fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:4,background:s.sc+"12",color:s.sc }}>{s.status}</span>
                     </div>
@@ -370,47 +370,47 @@ function App() {
                 </div>
                 <div style={{ display:"flex",alignItems:"center",gap:16 }}>
                   <div style={{ textAlign:"right" }}>
-                    <div style={{ fontSize:17,fontWeight:700,color:"#0F172A" }}>${s.price}</div>
+                    <div style={{ fontSize:17,fontWeight:700,color:"#F1F5F9" }}>${s.price}</div>
                     <div style={{ fontSize:10,color:"#64748B" }}>Score: <b style={{ color:s.composite>=7?"#22C55E":"#F59E0B" }}>{s.composite}</b></div>
                   </div>
                   <span style={{ fontSize:16,color:"#94A3B8",transition:"transform 0.2s",transform:open?"rotate(180deg)":"none" }}>▾</span>
                 </div>
               </div>
-              {open && (<div style={{ padding:"0 18px 18px",borderTop:"1px solid #F1F5F9" }}>
-                {s.macro && <div style={{ padding:"10px 12px",background:"#F0FDF4",border:"1px solid #BBF7D0",borderRadius:7,margin:"12px 0",fontSize:12,color:"#166534" }}><b style={{ fontSize:10,letterSpacing:1,textTransform:"uppercase",color:"#16A34A" }}>Macro:</b> {s.macro}</div>}
-                <div style={{ padding:"12px 0",borderBottom:"1px solid #F1F5F9" }}><div style={{ fontSize:10,fontWeight:700,letterSpacing:1,textTransform:"uppercase",color:"#94A3B8",marginBottom:5 }}>Thesis</div><p style={{ fontSize:13,color:"#334155",lineHeight:1.6,margin:0 }}>{s.thesis}</p></div>
-                <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10,padding:"12px 0",borderBottom:"1px solid #F1F5F9" }}>
+              {open && (<div style={{ padding:"0 18px 18px",borderTop:"1px solid #1A2336" }}>
+                {s.macro && <div style={{ padding:"10px 12px",background:"#0A1F12",border:"1px solid #166534",borderRadius:7,margin:"12px 0",fontSize:12,color:"#4ADE80" }}><b style={{ fontSize:10,letterSpacing:1,textTransform:"uppercase",color:"#4ADE80" }}>Macro:</b> {s.macro}</div>}
+                <div style={{ padding:"12px 0",borderBottom:"1px solid #1A2336" }}><div style={{ fontSize:10,fontWeight:700,letterSpacing:1,textTransform:"uppercase",color:"#94A3B8",marginBottom:5 }}>Thesis</div><p style={{ fontSize:13,color:"#CBD5E1",lineHeight:1.6,margin:0 }}>{s.thesis}</p></div>
+                <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10,padding:"12px 0",borderBottom:"1px solid #1A2336" }}>
                   {[["Entry",s.entry,"#22C55E"],["Stop",s.stop,"#EF4444"],["Targets",s.target,"#3B82F6"]].map(([l,v,c])=>(<div key={l}><div style={{ fontSize:10,fontWeight:700,letterSpacing:1,textTransform:"uppercase",color:"#94A3B8",marginBottom:3 }}>{l}</div><div style={{ fontSize:13,fontWeight:700,color:c }}>{v}</div></div>))}
                 </div>
                 <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,padding:"12px 0" }}>
-                  <div><div style={{ fontSize:10,fontWeight:700,letterSpacing:1,textTransform:"uppercase",color:"#94A3B8",marginBottom:5 }}>Setup</div><p style={{ fontSize:12,color:"#475569",lineHeight:1.5,margin:0 }}>{s.setup}</p></div>
-                  <div><div style={{ fontSize:10,fontWeight:700,letterSpacing:1,textTransform:"uppercase",color:"#94A3B8",marginBottom:5 }}>Catalysts</div><p style={{ fontSize:12,color:"#475569",lineHeight:1.5,margin:0 }}>{s.catalyst}</p><div style={{ marginTop:6,fontSize:11,color:"#64748B" }}>R:R — <b style={{ color:"#0F172A" }}>{s.rr}</b></div></div>
+                  <div><div style={{ fontSize:10,fontWeight:700,letterSpacing:1,textTransform:"uppercase",color:"#94A3B8",marginBottom:5 }}>Setup</div><p style={{ fontSize:12,color:"#94A3B8",lineHeight:1.5,margin:0 }}>{s.setup}</p></div>
+                  <div><div style={{ fontSize:10,fontWeight:700,letterSpacing:1,textTransform:"uppercase",color:"#94A3B8",marginBottom:5 }}>Catalysts</div><p style={{ fontSize:12,color:"#94A3B8",lineHeight:1.5,margin:0 }}>{s.catalyst}</p><div style={{ marginTop:6,fontSize:11,color:"#64748B" }}>R:R — <b style={{ color:"#F1F5F9" }}>{s.rr}</b></div></div>
                 </div>
-                {s.research && <div style={{ marginTop:6,padding:"7px 10px",background:"#EFF6FF",borderRadius:5,fontSize:11,color:"#2563EB",fontWeight:600 }}>✓ Research report — see Research tab</div>}
+                {s.research && <div style={{ marginTop:6,padding:"7px 10px",background:"#0C1A2E",borderRadius:5,fontSize:11,color:"#2563EB",fontWeight:600 }}>✓ Research report — see Research tab</div>}
               </div>)}
             </div>);
           })}
-          <div style={{ marginTop:16,padding:"20px",border:"2px dashed #E2E8F0",borderRadius:10,textAlign:"center",color:"#94A3B8",fontSize:12 }}>More stocks added as we analyze them.</div>
+          <div style={{ marginTop:16,padding:"20px",border:"2px dashed #1E293B",borderRadius:10,textAlign:"center",color:"#94A3B8",fontSize:12 }}>More stocks added as we analyze them.</div>
         </div>)}
 
         {/* RESEARCH */}
         {tab === "research" && (<div>
-          <h2 style={{ fontSize:19,fontWeight:800,color:"#0F172A",marginBottom:14 }}>Research Reports</h2>
+          <h2 style={{ fontSize:19,fontWeight:800,color:"#F1F5F9",marginBottom:14 }}>Research Reports</h2>
           {REPORTS.map(r => {
             const st = STG[r.stage]||{};
-            return (<div key={r.ticker} style={{ background:"#FFF",border:"1px solid #E2E8F0",borderRadius:11,overflow:"hidden",marginBottom:14 }}>
-              <div style={{ padding:"14px 18px",borderBottom:"1px solid #F1F5F9",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
-                <div><div style={{ fontSize:18,fontWeight:800,color:"#0F172A" }}>{r.ticker} — {r.company}</div><div style={{ fontSize:11,color:"#94A3B8",marginTop:2 }}>{r.date}</div></div>
+            return (<div key={r.ticker} style={{ background:"#131B2E",border:"1px solid #1E293B",borderRadius:11,overflow:"hidden",marginBottom:14 }}>
+              <div style={{ padding:"14px 18px",borderBottom:"1px solid #1A2336",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+                <div><div style={{ fontSize:18,fontWeight:800,color:"#F1F5F9" }}>{r.ticker} — {r.company}</div><div style={{ fontSize:11,color:"#94A3B8",marginTop:2 }}>{r.date}</div></div>
                 <span style={{ fontSize:9,fontWeight:700,padding:"3px 8px",borderRadius:4,background:st.bg,color:st.c,textTransform:"uppercase",letterSpacing:0.5 }}>{r.stage}</span>
               </div>
               {r.sects.map((s,i) => {
                 const k = r.ticker+"-"+i; const isOpen = expSect[k];
                 return (<div key={i}>
-                  <div onClick={() => setExpSect(p=>({...p,[k]:!p[k]}))} style={{ padding:"10px 18px",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",background:isOpen?"#F8FAFC":"#FFF",borderBottom:"1px solid #F1F5F9" }}>
-                    <span style={{ fontSize:13,fontWeight:600,color:"#1E293B" }}>{s.t}</span>
+                  <div onClick={() => setExpSect(p=>({...p,[k]:!p[k]}))} style={{ padding:"10px 18px",cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",background:isOpen?"#F8FAFC":"#FFF",borderBottom:"1px solid #1A2336" }}>
+                    <span style={{ fontSize:13,fontWeight:600,color:"#E2E8F0" }}>{s.t}</span>
                     <span style={{ fontSize:13,color:"#94A3B8",transform:isOpen?"rotate(180deg)":"none",transition:"transform 0.15s" }}>▾</span>
                   </div>
-                  {isOpen && <div style={{ padding:"12px 18px 16px",background:"#FAFBFC" }}><p style={{ fontSize:13,color:"#334155",lineHeight:1.7,margin:0 }}>{s.x}</p></div>}
+                  {isOpen && <div style={{ padding:"12px 18px 16px",background:"#0F1628" }}><p style={{ fontSize:13,color:"#CBD5E1",lineHeight:1.7,margin:0 }}>{s.x}</p></div>}
                 </div>);
               })}
             </div>);
@@ -419,7 +419,7 @@ function App() {
 
         {/* WORKFLOW */}
         {tab === "workflow" && (<div>
-          <h2 style={{ fontSize:19,fontWeight:800,color:"#0F172A",marginBottom:14 }}>Research Workflow</h2>
+          <h2 style={{ fontSize:19,fontWeight:800,color:"#F1F5F9",marginBottom:14 }}>Research Workflow</h2>
           {[
             { p:"0",n:"Macro Regime",d:"Screenshot dashboard → Claude reads regime + vol charts",c:"#EF4444",s:"Active" },
             { p:"1",n:"Screening",d:"TradingView export → lifecycle valuation model (13,602 stocks)",c:"#F97316",s:"Complete" },
@@ -428,11 +428,11 @@ function App() {
             { p:"4",n:"Deep Research",d:"SEC filings, analyst data, competitive landscape",c:"#3B82F6",s:"Active" },
             { p:"5",n:"Execution",d:"Trade, track, bring updated charts",c:"#EC4899",s:"Pending" },
           ].map((ph,i)=>(
-            <div key={i} style={{ display:"flex",gap:14,padding:"14px 0",borderBottom:i<5?"1px solid #F1F5F9":"none" }}>
+            <div key={i} style={{ display:"flex",gap:14,padding:"14px 0",borderBottom:i<5?"1px solid #1A2336":"none" }}>
               <div style={{ width:38,height:38,borderRadius:9,display:"flex",alignItems:"center",justifyContent:"center",background:ph.c+"12",color:ph.c,fontSize:15,fontWeight:800,flexShrink:0 }}>{ph.p}</div>
               <div>
                 <div style={{ display:"flex",alignItems:"center",gap:6 }}>
-                  <span style={{ fontSize:14,fontWeight:700,color:"#0F172A" }}>{ph.n}</span>
+                  <span style={{ fontSize:14,fontWeight:700,color:"#F1F5F9" }}>{ph.n}</span>
                   <span style={{ fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:3,letterSpacing:0.5,
                     background:ph.s==="Complete"?"#F0FDF4":ph.s==="Active"?"#EFF6FF":ph.s==="In Progress"?"#FFF7ED":"#F8FAFC",
                     color:ph.s==="Complete"?"#16A34A":ph.s==="Active"?"#2563EB":ph.s==="In Progress"?"#EA580C":"#94A3B8"
@@ -455,7 +455,7 @@ function App() {
           </div>
         </div>)}
       </div>
-      <div style={{ padding:"14px 20px",textAlign:"center",fontSize:10,color:"#94A3B8",borderTop:"1px solid #E2E8F0",marginTop:32 }}>Lifecycle Research · Not financial advice · {UPDATED}</div>
+      <div style={{ padding:"14px 20px",textAlign:"center",fontSize:10,color:"#94A3B8",borderTop:"1px solid #1E293B",marginTop:32 }}>Lifecycle Research · Not financial advice · {UPDATED}</div>
     </div>
   );
 }
