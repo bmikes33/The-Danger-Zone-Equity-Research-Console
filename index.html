@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifecycle Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.5/babel.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', -apple-system, sans-serif; background: #F8FAFC; }
+        button { font-family: inherit; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+const { useState } = React;
+
+// ============================================================
+// DATA — Claude updates this section each session
+// ============================================================
+const MACRO_DATA = {
+  lastUpdated: "March 9, 2026 — 4:47 PM ET",
+  regime: "Growth Scare → Broadening Rally (Early)",
+  regimeColor: "#22C55E",
+  regimeDescription: "VIX collapsing (-13.5%), MOVE below 80, equities broadly green with IWM + MTUM leading. Credit (HYG) stable. Commodities surging across the board (gold ATH, copper +3%, oil +3%). Dollar weak (DXY 98.9). Regime transitioning from Growth Scare to early Broadening Rally. CPI Wednesday is the key risk — hot print could snap us back to Rate Shock.",
+  stageBias: [
+    { stage: "Young Growth", bias: "Neutral", color: "#F59E0B", note: "Wait for VIX < 20 sustained", icon: "🌱" },
+    { stage: "High Growth", bias: "Overweight", color: "#22C55E", note: "MTUM leading, QQQ strong, VIX dropping", icon: "🚀" },
+    { stage: "Mature Growth", bias: "Overweight", color: "#22C55E", note: "QUAL strong, breadth participating", icon: "📈" },
+    { stage: "Maturity", bias: "Neutral", color: "#94A3B8", note: "Defensives lagging, trim overweights", icon: "🏛️" },
+    { stage: "Decline", bias: "Underweight", color: "#EF4444", note: "No reason to bottom-fish in risk-on", icon: "📉" },
+  ],
+  keyLevels: [
+    { instrument: "VIX", value: "25.51", change: "-13.5%", signal: "Collapsing", color: "#22C55E" },
+    { instrument: "MOVE", value: "79.7", change: "-1.9%", signal: "Below 80 ✓", color: "#22C55E" },
+    { instrument: "SPY", value: "678.27", change: "+0.88%", signal: "Green", color: "#22C55E" },
+    { instrument: "QQQ", value: "607.76", change: "+1.34%", signal: "Leading", color: "#22C55E" },
+    { instrument: "IWM", value: "253.62", change: "+1.09%", signal: "Participating", color: "#22C55E" },
+    { instrument: "RSP", value: "198.71", change: "+0.28%", signal: "Breadth OK", color: "#22C55E" },
+    { instrument: "MTUM", value: "247.24", change: "+2.39%", signal: "Leading!", color: "#22C55E" },
+    { instrument: "QUAL", value: "200.71", change: "+1.03%", signal: "Strong", color: "#22C55E" },
+    { instrument: "HYG", value: "80.17", change: "+0.60%", signal: "Stable ✓", color: "#22C55E" },
+    { instrument: "US 10Y", value: "4.109%", change: "+0.17%", signal: "Stable", color: "#F59E0B" },
+    { instrument: "US 2Y", value: "3.559%", change: "+0.25%", signal: "Mild uptick", color: "#F59E0B" },
+    { instrument: "DXY", value: "98.86", change: "+0.13%", signal: "Weak dollar ✓", color: "#22C55E" },
+    { instrument: "Gold", value: "$5,178", change: "+0.77%", signal: "ATH area", color: "#22C55E" },
+    { instrument: "Copper", value: "$82.24", change: "+2.86%", signal: "Dr. Copper bullish", color: "#22C55E" },
+    { instrument: "Oil", value: "$87.65", change: "+3.03%", signal: "Demand signal", color: "#22C55E" },
+    { instrument: "BTC", value: "$70,538", change: "+3.08%", signal: "Risk-on confirmed", color: "#22C55E" },
+  ],
+  sectorPerformance: [
+    { sector: "MTUM (Momentum)", change: "+2.39%", color: "#22C55E" },
+    { sector: "QQQ (Nasdaq 100)", change: "+1.34%", color: "#22C55E" },
+    { sector: "IWM (Small Cap)", change: "+1.09%", color: "#22C55E" },
+    { sector: "QUAL (Quality)", change: "+1.03%", color: "#22C55E" },
+    { sector: "XLV (Healthcare)", change: "+1.02%", color: "#22C55E" },
+    { sector: "SPY (S&P 500)", change: "+0.88%", color: "#22C55E" },
+    { sector: "XLI (Industrials)", change: "+0.59%", color: "#22C55E" },
+    { sector: "DJI (Dow Jones)", change: "+0.50%", color: "#22C55E" },
+    { sector: "RSP (Equal Weight)", change: "+0.28%", color: "#22C55E" },
+    { sector: "XLP (Staples)", change: "+0.22%", color: "#22C55E" },
+    { sector: "XLRE (Real Estate)", change: "+0.21%", color: "#22C55E" },
+    { sector: "XLY (Discretionary)", change: "+0.13%", color: "#22C55E" },
+    { sector: "IGV (Software)", change: "-0.30%", color: "#EF4444" },
+    { sector: "XLE (Energy)", change: "-0.44%", color: "#EF4444" },
+    { sector: "XLF (Financials)", change: "-0.47%", color: "#EF4444" },
+  ],
+  narrativeSummary: "The fear complex is collapsing across VIX, VVIX, and MOVE. Equities are broadly green with small-caps and momentum leading — the healthiest breadth signal we've seen. Credit (HYG) stable, commodities surging (gold ATH, copper +3%, oil +3%), dollar weak. Transitioning from Growth Scare to early Broadening Rally. Key risk: CPI Wednesday. Until then, lean into High Growth and Mature Growth. GLUE benefits: healthcare outperforming, momentum leading, VIX dropping.",
+  calendar: [
+    { date: "Mar 10", event: "NY Fed 1-Year Inflation Expectations", impact: "Medium" },
+    { date: "Mar 11", event: "JOLTS Job Openings", impact: "Medium" },
+    { date: "Mar 12", event: "CPI (February) ← KEY EVENT", impact: "Critical" },
+    { date: "Mar 13", event: "PPI (February)", impact: "Medium" },
+    { date: "Mar 14", event: "Michigan Consumer Sentiment", impact: "Medium" },
+    { date: "Mar 18", event: "GLUE Earnings", impact: "Position" },
+  ],
+};
+
+const WATCHLIST = [
+  {
+    ticker: "GLUE", company: "Monte Rosa Therapeutics", stage: "High Growth", sector: "Health Technology",
+    price: 17.66, composite: 7.2, signal: "Interesting",
+    technicalSetup: "Sitting on 0.618 Fib ($17.45) + 50 SMA confluence. MACD histogram exhausting. OBV holding. Macro now supportive — VIX collapsing, MTUM leading, XLV outperforming.",
+    thesis: "AI-driven molecular glue degrader platform. Two Novartis deals ($7.8B potential). Wholly-owned MRT-8102 targeting NLRP3/cardiovascular (85% CRP reduction in Phase 1). $500M+ cash.",
+    entry: "$17.00–18.00", stop: "$14.89 (below 0.5 Fib)", target: "$21.11 / $24.00",
+    riskReward: "1:1.4 to T1, 1:2.5 to T2", catalyst: "Earnings Mar 18 · GFORCE-1 data H2 2026",
+    status: "Watching — Macro turning favorable", statusColor: "#22C55E",
+    deepResearch: true,
+    macroNote: "Strong alignment. High Growth overweight + XLV leading + VIX collapsing.",
+  },
+];
+
+const REPORTS = [
+  {
+    ticker: "GLUE", company: "Monte Rosa Therapeutics", stage: "High Growth", date: "March 9, 2026",
+    sections: [
+      { title: "Business Overview", text: "Clinical-stage biotech developing molecular glue degraders (MGDs) via proprietary AI-driven QuEEN platform. Three clinical programs: MRT-8102 (NEK7/NLRP3, cardiovascular inflammation — wholly owned), MRT-2359 (GSPT1, prostate cancer — wholly owned), MRT-6160 (VAV1, autoimmune — licensed to Novartis)." },
+      { title: "Market Opportunity", text: "Targeted protein degradation market: ~$544M in 2024, projected $1.7B by 2030 (21% CAGR). Molecular glues growing faster than PROTACs. NLRP3 inflammasome space has no FDA-approved inhibitors despite CANTOS trial validation. Cardiovascular inflammation TAM in tens of billions." },
+      { title: "Competitive Position", text: "Differentiated via molecular glues (vs PROTAC-focused Arvinas, Kymera, C4, Nurix). QuEEN platform data moat: 34M protein measurements, 6M MGD activity measurements, 37B virtual MGDs screened. Two Novartis validations: $270M upfront + up to $7.8B milestones. NLRP3 competitors: Ventyx (78% CRP reduction at 12wks), NodThera, Roche, Novo Nordisk." },
+      { title: "Financial Health", text: "~$500M+ cash post-$300M Jan 2026 offering at $24/share. Recently profitable (11.5% net margin) via Novartis milestones — lumpy, not product revenue. $1.3B market cap. Runway into 2028+. 95% gross margins." },
+      { title: "Key Catalysts", text: "Earnings: Mar 18. GFORCE-1 expanded MRT-8102 data: H2 2026. Phase 2 ASCVD initiation: 2026. MRT-2359 Phase 2 mCRPC: Q3 2026. Additional POC studies (MASH, gout, pericarditis) under evaluation." },
+      { title: "Risks", text: "Clinical failure (all early-stage). Dilution ($300M raise, more possible). NLRP3 competition intensifying. Revenue quality (milestone-driven). CEO insider selling (small, 10b5-1). Binary event risk." },
+      { title: "Valuation Scenarios", text: "Bull ($37 — Piper PT): MRT-8102 Phase 2 success + Novartis milestones. Base ($24): Steady progress, encouraging data. Bear ($10): Clinical setback, accelerated cash burn." },
+    ],
+  },
+];
+
+// ============================================================
+// STAGE CONFIG
+// ============================================================
+const STG = {
+  "Young Growth": { c: "#F87171", bg: "#FEF2F2", i: "🌱" },
+  "High Growth":  { c: "#F97316", bg: "#FFF7ED", i: "🚀" },
+  "Mature Growth": { c: "#22C55E", bg: "#F0FDF4", i: "📈" },
+  "Maturity":     { c: "#3B82F6", bg: "#EFF6FF", i: "🏛️" },
+  "Decline":      { c: "#8B5CF6", bg: "#F5F3FF", i: "📉" },
+};
+
+// ============================================================
+// APP
+// ============================================================
+function App() {
+  const [tab, setTab] = useState("macro");
+  const [expandedStock, setExpandedStock] = useState(null);
+  const [expandedSection, setExpandedSection] = useState({});
+
+  const tabs = [
+    { id: "macro", label: "Macro", icon: "◉" },
+    { id: "watchlist", label: "Watchlist", icon: "◎" },
+    { id: "research", label: "Research", icon: "◈" },
+    { id: "workflow", label: "Workflow", icon: "◇" },
+  ];
+
+  const d = MACRO_DATA;
+
+  return (
+    <div style={{ minHeight: "100vh", background: "#F8FAFC" }}>
+      {/* NAV */}
+      <div style={{ background: "linear-gradient(135deg,#0F172A,#1E293B)", padding: "14px 20px", borderBottom: "1px solid #334155" }}>
+        <div style={{ maxWidth: 960, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10 }}>
+          <div>
+            <div style={{ fontSize: 19, fontWeight: 800, color: "#F1F5F9", letterSpacing: -0.5 }}>Lifecycle Research</div>
+            <div style={{ fontSize: 10, color: "#64748B", marginTop: 1 }}>Macro · Fundamentals · Technicals · Execution</div>
+          </div>
+          <div style={{ display: "flex", gap: 3 }}>
+            {tabs.map(t => (
+              <button key={t.id} onClick={() => setTab(t.id)} style={{
+                padding: "6px 13px", borderRadius: 7, border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600,
+                display: "flex", alignItems: "center", gap: 4,
+                background: tab === t.id ? "#3B82F6" : "transparent",
+                color: tab === t.id ? "#FFF" : "#94A3B8",
+              }}><span style={{ fontSize: 12 }}>{t.icon}</span>{t.label}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "20px 14px" }}>
+
+        {/* ==================== MACRO ==================== */}
+        {tab === "macro" && (<div>
+          <h2 style={{ fontSize: 19, fontWeight: 800, color: "#0F172A", marginBottom: 14 }}>Macro Dashboard</h2>
+
+          {/* Regime */}
+          <div style={{ background: d.regimeColor+"10", border: "1px solid "+d.regimeColor+"30", borderRadius: 12, padding: "18px 22px", marginBottom: 16 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+              <div>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: d.regimeColor }}>Current Regime</div>
+                <div style={{ fontSize: 24, fontWeight: 800, color: "#0F172A", marginTop: 4 }}>{d.regime}</div>
+              </div>
+              <div style={{ fontSize: 10, color: "#94A3B8", textAlign: "right" }}>Updated<br/><b style={{ color: "#64748B" }}>{d.lastUpdated}</b></div>
+            </div>
+            <p style={{ fontSize: 13, color: "#475569", marginTop: 12, lineHeight: 1.65 }}>{d.regimeDescription}</p>
+          </div>
+
+          {/* Stage Bias */}
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#94A3B8", marginBottom: 8 }}>Stage Positioning</div>
+            {d.stageBias.map(s => (
+              <div key={s.stage} style={{ display: "flex", alignItems: "center", gap: 10, background: "#FFF", border: "1px solid #E2E8F0", borderLeft: "3px solid "+s.color, borderRadius: 7, padding: "7px 12px", marginBottom: 5 }}>
+                <span style={{ fontSize: 15 }}>{s.icon}</span>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "#334155", minWidth: 110 }}>{s.stage}</span>
+                <span style={{ fontSize: 12, fontWeight: 800, color: s.color, minWidth: 85 }}>{s.bias}</span>
+                <span style={{ fontSize: 11, color: "#94A3B8" }}>{s.note}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Key Levels */}
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#94A3B8", marginBottom: 8 }}>Key Instruments</div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(165px,1fr))", gap: 6 }}>
+              {d.keyLevels.map(k => (
+                <div key={k.instrument} style={{ background: "#FFF", border: "1px solid #E2E8F0", borderLeft: "3px solid "+k.color, borderRadius: 7, padding: "8px 12px" }}>
+                  <div style={{ fontSize: 10, color: "#94A3B8", fontWeight: 600 }}>{k.instrument}</div>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: 5, margin: "2px 0" }}>
+                    <span style={{ fontSize: 16, fontWeight: 700, color: "#0F172A" }}>{k.value}</span>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: k.change?.startsWith("-") ? "#EF4444" : "#22C55E" }}>{k.change}</span>
+                  </div>
+                  <div style={{ fontSize: 10, color: k.color, fontWeight: 600 }}>{k.signal}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Sectors */}
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#94A3B8", marginBottom: 8 }}>Sector Performance</div>
+            <div style={{ background: "#FFF", border: "1px solid #E2E8F0", borderRadius: 9, overflow: "hidden" }}>
+              {d.sectorPerformance.map((s,i) => (
+                <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "6px 14px", borderBottom: i < d.sectorPerformance.length-1 ? "1px solid #F1F5F9" : "none", background: i%2===0 ? "#FAFBFC" : "#FFF" }}>
+                  <span style={{ fontSize: 12, color: "#334155" }}>{s.sector}</span>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: s.color, fontVariantNumeric: "tabular-nums" }}>{s.change}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Narrative */}
+          <div style={{ background: "#0F172A", borderRadius: 10, padding: "16px 20px", marginBottom: 16 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#64748B", marginBottom: 6 }}>Daily Summary</div>
+            <p style={{ fontSize: 13, color: "#CBD5E1", lineHeight: 1.7, margin: 0 }}>{d.narrativeSummary}</p>
+          </div>
+
+          {/* Calendar */}
+          <div style={{ background: "#FFF", border: "1px solid #E2E8F0", borderRadius: 9, overflow: "hidden" }}>
+            <div style={{ background: "#1E293B", padding: "8px 14px", fontSize: 10, fontWeight: 700, color: "#94A3B8", letterSpacing: 1.5, textTransform: "uppercase" }}>Economic Calendar</div>
+            {d.calendar.map((e,i) => (
+              <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 14px", borderBottom: i<d.calendar.length-1 ? "1px solid #F1F5F9" : "none", background: e.impact==="Critical" ? "#FEF2F2" : i%2===0 ? "#FAFBFC" : "#FFF" }}>
+                <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: "#64748B", minWidth: 45 }}>{e.date}</span>
+                  <span style={{ fontSize: 12, color: "#1E293B", fontWeight: e.impact==="Critical" ? 700 : 400 }}>{e.event}</span>
+                </div>
+                <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", padding: "2px 7px", borderRadius: 3,
+                  background: e.impact==="Critical" ? "#DC2626" : e.impact==="Position" ? "#EFF6FF" : "#F0FDF4",
+                  color: e.impact==="Critical" ? "#FFF" : e.impact==="Position" ? "#2563EB" : "#16A34A",
+                }}>{e.impact}</span>
+              </div>
+            ))}
+          </div>
+        </div>)}
+
+        {/* ==================== WATCHLIST ==================== */}
+        {tab === "watchlist" && (<div>
+          <h2 style={{ fontSize: 19, fontWeight: 800, color: "#0F172A", marginBottom: 14 }}>Active Watchlist</h2>
+          {WATCHLIST.map(s => {
+            const st = STG[s.stage] || {};
+            const open = expandedStock === s.ticker;
+            return (
+              <div key={s.ticker} style={{ background: "#FFF", border: "1px solid #E2E8F0", borderRadius: 11, marginBottom: 10, overflow: "hidden", boxShadow: open ? "0 4px 16px rgba(0,0,0,0.06)" : "none" }}>
+                <div onClick={() => setExpandedStock(open ? null : s.ticker)} style={{ padding: "14px 18px", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div style={{ width: 40, height: 40, borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center", background: st.bg, fontSize: 18, border: "1px solid "+st.c+"30" }}>{st.i}</div>
+                    <div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+                        <span style={{ fontSize: 17, fontWeight: 800, color: "#0F172A" }}>{s.ticker}</span>
+                        <span style={{ fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 4, background: st.bg, color: st.c, textTransform: "uppercase", letterSpacing: 0.5 }}>{s.stage}</span>
+                        <span style={{ fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 4, background: s.statusColor+"12", color: s.statusColor }}>{s.status}</span>
+                      </div>
+                      <div style={{ fontSize: 11, color: "#94A3B8", marginTop: 2 }}>{s.company} · {s.sector}</div>
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                    <div style={{ textAlign: "right" }}>
+                      <div style={{ fontSize: 17, fontWeight: 700, color: "#0F172A" }}>${s.price}</div>
+                      <div style={{ fontSize: 10, color: "#64748B" }}>Score: <b style={{ color: s.composite >= 7 ? "#22C55E" : "#F59E0B" }}>{s.composite}</b></div>
+                    </div>
+                    <span style={{ fontSize: 16, color: "#94A3B8", transition: "transform 0.2s", transform: open ? "rotate(180deg)" : "none" }}>▾</span>
+                  </div>
+                </div>
+                {open && (
+                  <div style={{ padding: "0 18px 18px", borderTop: "1px solid #F1F5F9" }}>
+                    {s.macroNote && (
+                      <div style={{ padding: "10px 12px", background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 7, margin: "12px 0", fontSize: 12, color: "#166534" }}>
+                        <b style={{ fontSize: 10, letterSpacing: 1, textTransform: "uppercase", color: "#16A34A" }}>Macro Alignment:</b> {s.macroNote}
+                      </div>
+                    )}
+                    <div style={{ padding: "12px 0", borderBottom: "1px solid #F1F5F9" }}>
+                      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", color: "#94A3B8", marginBottom: 5 }}>Investment Thesis</div>
+                      <p style={{ fontSize: 13, color: "#334155", lineHeight: 1.6, margin: 0 }}>{s.thesis}</p>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, padding: "12px 0", borderBottom: "1px solid #F1F5F9" }}>
+                      {[["Entry", s.entry, "#22C55E"], ["Stop", s.stop, "#EF4444"], ["Targets", s.target, "#3B82F6"]].map(([l,v,c]) => (
+                        <div key={l}>
+                          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", color: "#94A3B8", marginBottom: 3 }}>{l}</div>
+                          <div style={{ fontSize: 13, fontWeight: 700, color: c }}>{v}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, padding: "12px 0" }}>
+                      <div>
+                        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", color: "#94A3B8", marginBottom: 5 }}>Technical Setup</div>
+                        <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5, margin: 0 }}>{s.technicalSetup}</p>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", color: "#94A3B8", marginBottom: 5 }}>Catalysts</div>
+                        <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.5, margin: 0 }}>{s.catalyst}</p>
+                        <div style={{ marginTop: 6, fontSize: 11, color: "#64748B" }}>R:R — <b style={{ color: "#0F172A" }}>{s.riskReward}</b></div>
+                      </div>
+                    </div>
+                    {s.deepResearch && <div style={{ marginTop: 6, padding: "7px 10px", background: "#EFF6FF", borderRadius: 5, fontSize: 11, color: "#2563EB", fontWeight: 600 }}>✓ Deep research report available — see Research tab</div>}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+          <div style={{ marginTop: 16, padding: "20px", border: "2px dashed #E2E8F0", borderRadius: 10, textAlign: "center", color: "#94A3B8", fontSize: 12 }}>
+            More stocks added as we analyze them. Provide TradingView charts in chat to add entries.
+          </div>
+        </div>)}
+
+        {/* ==================== RESEARCH ==================== */}
+        {tab === "research" && (<div>
+          <h2 style={{ fontSize: 19, fontWeight: 800, color: "#0F172A", marginBottom: 14 }}>Research Reports</h2>
+          {REPORTS.map(r => {
+            const st = STG[r.stage] || {};
+            return (
+              <div key={r.ticker} style={{ background: "#FFF", border: "1px solid #E2E8F0", borderRadius: 11, overflow: "hidden", marginBottom: 14 }}>
+                <div style={{ padding: "14px 18px", borderBottom: "1px solid #F1F5F9", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div>
+                    <div style={{ fontSize: 18, fontWeight: 800, color: "#0F172A" }}>{r.ticker} — {r.company}</div>
+                    <div style={{ fontSize: 11, color: "#94A3B8", marginTop: 2 }}>Research Report · {r.date}</div>
+                  </div>
+                  <span style={{ fontSize: 9, fontWeight: 700, padding: "3px 8px", borderRadius: 4, background: st.bg, color: st.c, textTransform: "uppercase", letterSpacing: 0.5 }}>{r.stage}</span>
+                </div>
+                {r.sections.map((s, i) => {
+                  const key = r.ticker + "-" + i;
+                  const isOpen = expandedSection[key];
+                  return (
+                    <div key={i}>
+                      <div onClick={() => setExpandedSection(prev => ({...prev, [key]: !prev[key]}))} style={{ padding: "10px 18px", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center", background: isOpen ? "#F8FAFC" : "#FFF", borderBottom: "1px solid #F1F5F9" }}>
+                        <span style={{ fontSize: 13, fontWeight: 600, color: "#1E293B" }}>{s.title}</span>
+                        <span style={{ fontSize: 13, color: "#94A3B8", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 0.15s" }}>▾</span>
+                      </div>
+                      {isOpen && <div style={{ padding: "12px 18px 16px", background: "#FAFBFC" }}><p style={{ fontSize: 13, color: "#334155", lineHeight: 1.7, margin: 0 }}>{s.text}</p></div>}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>)}
+
+        {/* ==================== WORKFLOW ==================== */}
+        {tab === "workflow" && (<div>
+          <h2 style={{ fontSize: 19, fontWeight: 800, color: "#0F172A", marginBottom: 14 }}>Research Workflow</h2>
+          {[
+            { p: "0", n: "Macro Regime", d: "Screenshot macro dashboard → Claude reads the room, sets stage bias", c: "#EF4444", s: "Active" },
+            { p: "1", n: "Screening", d: "Export TradingView → Claude builds lifecycle valuation model (13,602 stocks)", c: "#F97316", s: "Complete" },
+            { p: "2", n: "Selection", d: "Filter model using macro bias → Claude confirms stages & indicators", c: "#22C55E", s: "In Progress" },
+            { p: "3", n: "Technical", d: "Chart + screenshot → Claude builds trade plan (entry/stop/targets)", c: "#8B5CF6", s: "Active" },
+            { p: "4", n: "Deep Research", d: "Claude pulls SEC filings, analyst data, competitive landscape, catalysts", c: "#3B82F6", s: "Active" },
+            { p: "5", n: "Execution", d: "Trade, track positions, bring updated charts for management", c: "#EC4899", s: "Pending" },
+          ].map((ph,i) => (
+            <div key={i} style={{ display: "flex", gap: 14, padding: "14px 0", borderBottom: i < 5 ? "1px solid #F1F5F9" : "none" }}>
+              <div style={{ width: 38, height: 38, borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center", background: ph.c+"12", color: ph.c, fontSize: 15, fontWeight: 800, flexShrink: 0 }}>{ph.p}</div>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: "#0F172A" }}>{ph.n}</span>
+                  <span style={{ fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 3, letterSpacing: 0.5,
+                    background: ph.s==="Complete" ? "#F0FDF4" : ph.s==="Active" ? "#EFF6FF" : ph.s==="In Progress" ? "#FFF7ED" : "#F8FAFC",
+                    color: ph.s==="Complete" ? "#16A34A" : ph.s==="Active" ? "#2563EB" : ph.s==="In Progress" ? "#EA580C" : "#94A3B8"
+                  }}>{ph.s}</span>
+                </div>
+                <div style={{ fontSize: 12, color: "#64748B", marginTop: 3 }}>{ph.d}</div>
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: 20, padding: "16px 18px", background: "#0F172A", borderRadius: 10 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: "#F1F5F9", marginBottom: 6 }}>How Updates Work</div>
+            <div style={{ fontSize: 11, color: "#94A3B8", lineHeight: 1.8 }}>
+              This site is updated through Claude chat. I provide a new index.html file → you replace it in your GitHub repo → site updates in ~60 seconds.
+              <br/><span style={{color:"#EF4444"}}>•</span> "Here's today's macro dashboard" → regime update
+              <br/><span style={{color:"#F97316"}}>•</span> "Add MSFT to watchlist" → new stock card
+              <br/><span style={{color:"#22C55E"}}>•</span> "Here's a chart for GLUE" → updated technical setup
+              <br/><span style={{color:"#3B82F6"}}>•</span> "Deep dive on NVDA" → new research report
+              <br/><span style={{color:"#EC4899"}}>•</span> "GLUE hit T1" → position management update
+            </div>
+          </div>
+        </div>)}
+
+      </div>
+
+      <div style={{ padding: "14px 20px", textAlign: "center", fontSize: 10, color: "#94A3B8", borderTop: "1px solid #E2E8F0", marginTop: 32 }}>
+        Lifecycle Research · Built with Claude · Not financial advice · {MACRO_DATA.lastUpdated}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+</body>
+</html>
