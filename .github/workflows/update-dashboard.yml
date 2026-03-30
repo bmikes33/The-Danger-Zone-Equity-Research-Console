@@ -2,11 +2,11 @@ name: Daily Dashboard Update (4pm CST)
 
 on:
   schedule:
-    - cron: '0 22 * * *'     # 4:00 PM CST every day (after market close)
-  workflow_dispatch:         # click "Run workflow" anytime
+    - cron: '0 22 * * *'     # 4:00 PM CST every day after close
+  workflow_dispatch:
 
 permissions:
-  contents: write            # <-- THIS FIXES EXIT CODE 128
+  contents: write
 
 jobs:
   update:
@@ -15,8 +15,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          persist-credentials: false   # prevents token caching issues
+          token: ${{ secrets.PAT }}          # ← using your PAT now
+          persist-credentials: false
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
@@ -37,5 +37,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add data.json
-          git commit -m "Auto-update: dashboard data @ $(date '+%Y-%m-%d %H:%M CST')" || echo "No changes to commit"
+          git commit -m "Auto-update: dashboard data @ $(date '+%Y-%m-%d %H:%M CST')" || echo "No changes"
           git push
