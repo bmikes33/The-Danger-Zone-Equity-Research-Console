@@ -4,9 +4,12 @@ import os
 from polygon import RESTClient
 import requests
 
-# ====================== YOUR API KEYS (fallback + .env support) ======================
-POLYGON_KEY = os.getenv("POLYGON_API_KEY") or "Bav9s0UDEv_yplekpz8xpDnZW9dYrhKY"
-FRED_KEY = os.getenv("FRED_API_KEY") or "208ed0c942c14b9f19fb4ec1786daa54"
+# ====================== API KEYS (from environment / GitHub Secrets) ======================
+POLYGON_KEY = os.getenv("POLYGON_API_KEY")
+FRED_KEY = os.getenv("FRED_API_KEY")
+
+if not POLYGON_KEY or not FRED_KEY:
+    raise RuntimeError("Missing API keys. Set POLYGON_API_KEY and FRED_API_KEY as environment variables or GitHub Secrets.")
 
 client = RESTClient(api_key=POLYGON_KEY)
 
@@ -62,7 +65,7 @@ def main():
         "updated": datetime.now().strftime("%Y-%m-%d %H:%M CDT"),
         "instruments": {},
         "sectors": [],
-        "narrative": "AI-generated daily summary (paste after running)",
+        "narrative": "Live data loaded from automation",
         "news": [],
         "fedPersonas": []
     }
@@ -87,7 +90,7 @@ def main():
     ratio = round(eth / btc, 4) if btc else 0
     data["instruments"]["ETHBTC"] = {"value": str(ratio), "change": "N/A", "signal": "", "color": "#F97316"}
 
-    # BMNR put-ladder monitor (ready for your short-put strategy)
+    # BMNR put-ladder monitor
     bm = data["instruments"].get("BMNR", {})
     bm["iv_rank"] = "85"  # placeholder — upgrade Polygon Options tier for live IV
     bm["signal"] = f"IV rank {bm.get('iv_rank')} → premium rich for short puts"
@@ -103,6 +106,7 @@ def main():
     # Save
     with open("data.json", "w") as f:
         json.dump(data, f, indent=2)
+
     print(f"✅ data.json updated — {data['updated']}")
     print("All instruments + BMNR ladder now live!")
 
