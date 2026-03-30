@@ -2,8 +2,11 @@ name: Daily Dashboard Update (4pm CST)
 
 on:
   schedule:
-    - cron: '0 22 * * *'     # 22:00 UTC = 4:00 PM CST (runs every day after market close)
-  workflow_dispatch:         # allows you to run manually anytime
+    - cron: '0 22 * * *'     # 4:00 PM CST every day (after market close)
+  workflow_dispatch:         # click "Run workflow" anytime
+
+permissions:
+  contents: write            # <-- THIS FIXES EXIT CODE 128
 
 jobs:
   update:
@@ -13,6 +16,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: false   # prevents token caching issues
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
@@ -20,8 +24,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: |
-          pip install polygon-api-client requests
+        run: pip install polygon-api-client requests
 
       - name: Run dashboard update script
         env:
@@ -29,10 +32,10 @@ jobs:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: python update_dashboard.py
 
-      - name: Commit updated data.json
+      - name: Commit & push updated data.json
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add data.json
-          git commit -m "Auto-update: dashboard data @ $(date '+%Y-%m-%d %H:%M CST')" || echo "No changes"
+          git commit -m "Auto-update: dashboard data @ $(date '+%Y-%m-%d %H:%M CST')" || echo "No changes to commit"
           git push
