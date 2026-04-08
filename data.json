@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-07 22:38 CDT",
+  "updated": "2026-04-08 22:39 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "79.7",
-      "change": "+0.18%"
+      "value": "79.72",
+      "change": "+0.03%"
     },
     "LQD": {
-      "value": "108.95",
-      "change": "-0.16%"
+      "value": "109.07",
+      "change": "+0.11%"
     },
     "SPY": {
-      "value": "658.93",
-      "change": "+0.47%"
+      "value": "659.22",
+      "change": "+0.04%"
     },
     "QQQ": {
-      "value": "588.5",
-      "change": "+0.6%"
+      "value": "588.59",
+      "change": "+0.02%"
     },
     "DIA": {
-      "value": "466.77",
-      "change": "+0.37%"
+      "value": "465.88",
+      "change": "-0.19%"
     },
     "IWM": {
       "value": "N/A",
@@ -54,12 +54,12 @@
       "change": "0%"
     },
     "BTC": {
-      "value": "68858.03",
-      "change": "-0.2%"
+      "value": "71971.59",
+      "change": "+4.52%"
     },
     "ETH": {
-      "value": "2107.21",
-      "change": "-0.07%"
+      "value": "2241.92",
+      "change": "+6.39%"
     },
     "Gold": {
       "value": "N/A",
@@ -126,8 +126,8 @@
       "change": "0%"
     },
     "IGV": {
-      "value": "80.46",
-      "change": "+0.15%"
+      "value": "N/A",
+      "change": "0%"
     },
     "US2Y": {
       "value": "N/A",
@@ -146,16 +146,16 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "159.69",
-      "change": "-0.06%"
+      "value": "158.72",
+      "change": "-0.61%"
     },
     "JP10Y": {
       "value": "N/A",
       "change": "0%"
     },
     "BMNR": {
-      "value": "20.6",
-      "change": "+5.91%",
+      "value": "N/A",
+      "change": "0%",
       "iv_rank": "85",
       "signal": "IV rank 85 \u2192 premium rich for short puts",
       "ladder_breakeven": "15% OTM",
@@ -188,7 +188,7 @@
       "color": "#22C55E"
     },
     "SOFR": {
-      "value": "3.65",
+      "value": "3.62",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
@@ -200,7 +200,7 @@
       "color": "#22C55E"
     },
     "ETHBTC": {
-      "value": "0.0306",
+      "value": "0.0312",
       "change": "N/A",
       "signal": "",
       "color": "#F97316"
@@ -264,7 +264,7 @@
     },
     {
       "s": "IGV",
-      "c": "80.46",
+      "c": "N/A",
       "clr": "#A78BFA"
     }
   ],
