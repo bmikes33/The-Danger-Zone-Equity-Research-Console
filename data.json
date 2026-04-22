@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-21 22:38 CDT",
+  "updated": "2026-04-22 22:49 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "80.58",
-      "change": "-0.09%"
+      "value": "80.37",
+      "change": "-0.26%"
     },
     "LQD": {
-      "value": "110.03",
-      "change": "-0.01%"
+      "value": "109.61",
+      "change": "-0.38%"
     },
     "SPY": {
-      "value": "708.72",
-      "change": "-0.2%"
+      "value": "704.08",
+      "change": "-0.65%"
     },
     "QQQ": {
-      "value": "646.79",
-      "change": "-0.32%"
+      "value": "644.33",
+      "change": "-0.38%"
     },
     "DIA": {
-      "value": "494.33",
-      "change": "+0.02%"
+      "value": "491.36",
+      "change": "-0.6%"
     },
     "IWM": {
       "value": "N/A",
@@ -54,12 +54,12 @@
       "change": "0%"
     },
     "BTC": {
-      "value": "75893.96",
-      "change": "+2.75%"
+      "value": "76367.61",
+      "change": "+0.62%"
     },
     "ETH": {
-      "value": "2315.02",
-      "change": "+2.22%"
+      "value": "2328.6",
+      "change": "+0.59%"
     },
     "Gold": {
       "value": "N/A",
@@ -110,24 +110,24 @@
       "change": "0%"
     },
     "XLP": {
-      "value": "82.39",
-      "change": "-0.08%"
+      "value": "N/A",
+      "change": "0%"
     },
     "XLU": {
-      "value": "45.75",
-      "change": "-0.89%"
+      "value": "44.95",
+      "change": "-1.75%"
     },
     "XLB": {
-      "value": "52.23",
-      "change": "+0.67%"
+      "value": "51.77",
+      "change": "-0.88%"
     },
     "XLRE": {
-      "value": "44.64",
-      "change": "+0.36%"
+      "value": "43.78",
+      "change": "-1.93%"
     },
     "IGV": {
-      "value": "86.3",
-      "change": "+1.43%"
+      "value": "86.68",
+      "change": "+0.44%"
     },
     "US2Y": {
       "value": "N/A",
@@ -146,16 +146,16 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "158.84",
-      "change": "-0.19%"
+      "value": "159.37",
+      "change": "+0.33%"
     },
     "JP10Y": {
       "value": "N/A",
       "change": "0%"
     },
     "BMNR": {
-      "value": "N/A",
-      "change": "0%",
+      "value": "21.71",
+      "change": "-3.64%",
       "iv_rank": "85",
       "signal": "IV rank 85 \u2192 premium rich for short puts",
       "ladder_breakeven": "15% OTM",
@@ -244,27 +244,27 @@
     },
     {
       "s": "XLP",
-      "c": "82.39",
+      "c": "N/A",
       "clr": "#A78BFA"
     },
     {
       "s": "XLU",
-      "c": "45.75",
+      "c": "44.95",
       "clr": "#A78BFA"
     },
     {
       "s": "XLB",
-      "c": "52.23",
+      "c": "51.77",
       "clr": "#A78BFA"
     },
     {
       "s": "XLRE",
-      "c": "44.64",
+      "c": "43.78",
       "clr": "#A78BFA"
     },
     {
       "s": "IGV",
-      "c": "86.3",
+      "c": "86.68",
       "clr": "#A78BFA"
     }
   ],
