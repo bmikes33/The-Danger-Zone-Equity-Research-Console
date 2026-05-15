@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 22:56 CDT",
+  "updated": "2026-05-15 22:54 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "79.91",
-      "change": "+0.05%"
+      "value": "79.85",
+      "change": "-0.08%"
     },
     "LQD": {
-      "value": "108.62",
-      "change": "+0.06%"
+      "value": "108.55",
+      "change": "-0.06%"
     },
     "SPY": {
-      "value": "742.31",
-      "change": "+0.56%"
+      "value": "748.17",
+      "change": "+0.79%"
     },
     "QQQ": {
-      "value": "714.71",
-      "change": "+1.06%"
+      "value": "719.79",
+      "change": "+0.71%"
     },
     "DIA": {
-      "value": "497.14",
-      "change": "-0.15%"
+      "value": "500.8",
+      "change": "+0.74%"
     },
     "IWM": {
       "value": "N/A",
@@ -54,12 +54,12 @@
       "change": "0%"
     },
     "BTC": {
-      "value": "79284.23",
-      "change": "-1.49%"
+      "value": "81056.61",
+      "change": "+2.24%"
     },
     "ETH": {
-      "value": "2257.75",
-      "change": "-0.74%"
+      "value": "2281.44",
+      "change": "+1.05%"
     },
     "Gold": {
       "value": "N/A",
@@ -146,16 +146,16 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "157.85",
-      "change": "+0.11%"
+      "value": "158.37",
+      "change": "+0.33%"
     },
     "JP10Y": {
       "value": "N/A",
       "change": "0%"
     },
     "BMNR": {
-      "value": "21.18",
-      "change": "-2.26%",
+      "value": "N/A",
+      "change": "0%",
       "iv_rank": "85",
       "signal": "IV rank 85 \u2192 premium rich for short puts",
       "ladder_breakeven": "15% OTM",
@@ -188,7 +188,7 @@
       "color": "#22C55E"
     },
     "SOFR": {
-      "value": "3.59",
+      "value": "3.56",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
@@ -200,7 +200,7 @@
       "color": "#22C55E"
     },
     "ETHBTC": {
-      "value": "0.0285",
+      "value": "0.0281",
       "change": "N/A",
       "signal": "",
       "color": "#F97316"
