@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-27 23:18 CDT",
+  "updated": "2026-05-29 23:12 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "80.18",
-      "change": "+0.34%"
+      "value": "80.23",
+      "change": "+0.12%"
     },
     "LQD": {
-      "value": "108.78",
-      "change": "+0.38%"
+      "value": "109.26",
+      "change": "+0.3%"
     },
     "SPY": {
-      "value": "750.59",
-      "change": "+0.66%"
+      "value": "754.6",
+      "change": "+0.55%"
     },
     "QQQ": {
-      "value": "730.28",
-      "change": "+1.78%"
+      "value": "735.6",
+      "change": "+0.84%"
     },
     "DIA": {
-      "value": "505.25",
-      "change": "-0.17%"
+      "value": "507.05",
+      "change": "+0.03%"
     },
     "IWM": {
       "value": "N/A",
@@ -54,12 +54,12 @@
       "change": "0%"
     },
     "BTC": {
-      "value": "75819.28",
-      "change": "-1.88%"
+      "value": "73537.09",
+      "change": "-1.22%"
     },
     "ETH": {
-      "value": "2070.85",
-      "change": "-1.92%"
+      "value": "2007.54",
+      "change": "-0.72%"
     },
     "Gold": {
       "value": "N/A",
@@ -118,16 +118,16 @@
       "change": "0%"
     },
     "XLB": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "51.36",
+      "change": "+0.35%"
     },
     "XLRE": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "44.41",
+      "change": "-0.49%"
     },
     "IGV": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "95.68",
+      "change": "+2.83%"
     },
     "US2Y": {
       "value": "N/A",
@@ -146,16 +146,16 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "159.24",
-      "change": "+0.18%"
+      "value": "159.26",
+      "change": "-0.18%"
     },
     "JP10Y": {
       "value": "N/A",
       "change": "0%"
     },
     "BMNR": {
-      "value": "N/A",
-      "change": "0%",
+      "value": "19.25",
+      "change": "+2.28%",
       "iv_rank": "85",
       "signal": "IV rank 85 \u2192 premium rich for short puts",
       "ladder_breakeven": "15% OTM",
@@ -164,13 +164,13 @@
       "analysis": "ETH treasury + BTC dom \u2192 widen ladder strikes"
     },
     "WALCL": {
-      "value": "6713643",
+      "value": "6704383",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "TGA": {
-      "value": "781979",
+      "value": "842660.0000000000000000000000000000000000000000",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
@@ -182,19 +182,19 @@
       "color": "#22C55E"
     },
     "Reserves": {
-      "value": "3129562.0",
+      "value": "3066560.0",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "SOFR": {
-      "value": "3.63",
+      "value": "3.62",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "NetLiq": {
-      "value": "5931664.0",
+      "value": "5861723.0",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
@@ -254,17 +254,17 @@
     },
     {
       "s": "XLB",
-      "c": "N/A",
+      "c": "51.36",
       "clr": "#A78BFA"
     },
     {
       "s": "XLRE",
-      "c": "N/A",
+      "c": "44.41",
       "clr": "#A78BFA"
     },
     {
       "s": "IGV",
-      "c": "N/A",
+      "c": "95.68",
       "clr": "#A78BFA"
     }
   ],
