@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03 23:04 CDT",
+  "updated": "2026-07-06 23:07 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -34,32 +34,32 @@
       "change": "+1.05%"
     },
     "IWM": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "297.58",
+      "change": "-0.58%"
     },
     "RSP": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "214.91",
+      "change": "+0.7%"
     },
     "MTUM": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "316.53",
+      "change": "-3.53%"
     },
     "QUAL": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "218.43",
+      "change": "-0.2%"
     },
     "VLUE": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "192.97",
+      "change": "-1.28%"
     },
     "BTC": {
-      "value": "61487.82",
-      "change": "+2.34%"
+      "value": "63546.56",
+      "change": "+0.72%"
     },
     "ETH": {
-      "value": "1698.74",
-      "change": "+5.62%"
+      "value": "1783.6",
+      "change": "+0.25%"
     },
     "Gold": {
       "value": "N/A",
@@ -147,7 +147,7 @@
     },
     "USDJPY": {
       "value": "161.46",
-      "change": "-0.67%"
+      "change": "+0.06%"
     },
     "JP10Y": {
       "value": "N/A",
@@ -188,7 +188,7 @@
       "color": "#22C55E"
     },
     "SOFR": {
-      "value": "3.66",
+      "value": "3.64",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
@@ -200,7 +200,7 @@
       "color": "#22C55E"
     },
     "ETHBTC": {
-      "value": "0.0276",
+      "value": "0.0281",
       "change": "N/A",
       "signal": "",
       "color": "#F97316"
