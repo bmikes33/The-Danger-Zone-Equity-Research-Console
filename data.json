@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06 23:07 CDT",
+  "updated": "2026-07-07 23:01 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,52 +14,52 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "79.71",
-      "change": "+0.15%"
+      "value": "79.87",
+      "change": "+0.2%"
     },
     "LQD": {
-      "value": "108.64",
-      "change": "+0.17%"
+      "value": "108.67",
+      "change": "+0.03%"
     },
     "SPY": {
-      "value": "744.78",
-      "change": "-0.13%"
+      "value": "751.28",
+      "change": "+0.87%"
     },
     "QQQ": {
-      "value": "712.6",
-      "change": "-1.73%"
+      "value": "722.82",
+      "change": "+1.43%"
     },
     "DIA": {
-      "value": "527.88",
-      "change": "+1.05%"
+      "value": "530.09",
+      "change": "+0.42%"
     },
     "IWM": {
-      "value": "297.58",
-      "change": "-0.58%"
+      "value": "N/A",
+      "change": "0%"
     },
     "RSP": {
-      "value": "214.91",
-      "change": "+0.7%"
+      "value": "N/A",
+      "change": "0%"
     },
     "MTUM": {
-      "value": "316.53",
-      "change": "-3.53%"
+      "value": "N/A",
+      "change": "0%"
     },
     "QUAL": {
-      "value": "218.43",
-      "change": "-0.2%"
+      "value": "N/A",
+      "change": "0%"
     },
     "VLUE": {
-      "value": "192.97",
-      "change": "-1.28%"
+      "value": "N/A",
+      "change": "0%"
     },
     "BTC": {
-      "value": "63546.56",
-      "change": "+0.72%"
+      "value": "63990",
+      "change": "+0.7%"
     },
     "ETH": {
-      "value": "1783.6",
-      "change": "+0.25%"
+      "value": "1799.1",
+      "change": "+0.87%"
     },
     "Gold": {
       "value": "N/A",
@@ -146,8 +146,8 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "161.46",
-      "change": "+0.06%"
+      "value": "162.09",
+      "change": "+0.4%"
     },
     "JP10Y": {
       "value": "N/A",
@@ -188,7 +188,7 @@
       "color": "#22C55E"
     },
     "SOFR": {
-      "value": "3.64",
+      "value": "3.63",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
