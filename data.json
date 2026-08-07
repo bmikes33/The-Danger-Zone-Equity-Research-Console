@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-07 01:29 CDT",
+  "updated": "2026-08-07 22:34 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "79.52",
-      "change": "-0.04%"
+      "value": "79.46",
+      "change": "-0.08%"
     },
     "LQD": {
-      "value": "106.74",
-      "change": "-0.02%"
+      "value": "106.36",
+      "change": "-0.36%"
     },
     "SPY": {
-      "value": "769.79",
-      "change": "-0.2%"
+      "value": "768.56",
+      "change": "-0.16%"
     },
     "QQQ": {
-      "value": "717.3",
-      "change": "-0.9%"
+      "value": "714.65",
+      "change": "-0.37%"
     },
     "DIA": {
-      "value": "542.81",
-      "change": "+0.44%"
+      "value": "538.19",
+      "change": "-0.85%"
     },
     "IWM": {
       "value": "N/A",
@@ -86,24 +86,24 @@
       "change": "0%"
     },
     "XLV": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "164.45",
+      "change": "+0.18%"
     },
     "XLF": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "57.81",
+      "change": "-0.33%"
     },
     "XLE": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "58.16",
+      "change": "+1.48%"
     },
     "XLI": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "184.76",
+      "change": "-0.85%"
     },
     "XLC": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "111.18",
+      "change": "+0.28%"
     },
     "XLY": {
       "value": "N/A",
@@ -188,7 +188,7 @@
       "color": "#22C55E"
     },
     "SOFR": {
-      "value": "3.64",
+      "value": "3.65",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
@@ -214,27 +214,27 @@
     },
     {
       "s": "XLV",
-      "c": "N/A",
+      "c": "164.45",
       "clr": "#A78BFA"
     },
     {
       "s": "XLF",
-      "c": "N/A",
+      "c": "57.81",
       "clr": "#A78BFA"
     },
     {
       "s": "XLE",
-      "c": "N/A",
+      "c": "58.16",
       "clr": "#A78BFA"
     },
     {
       "s": "XLI",
-      "c": "N/A",
+      "c": "184.76",
       "clr": "#A78BFA"
     },
     {
       "s": "XLC",
-      "c": "N/A",
+      "c": "111.18",
       "clr": "#A78BFA"
     },
     {
