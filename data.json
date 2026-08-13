@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-12 22:40 CDT",
+  "updated": "2026-08-13 22:41 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "79.51",
-      "change": "+0.04%"
+      "value": "79.61",
+      "change": "+0.13%"
     },
     "LQD": {
-      "value": "105.99",
-      "change": "+0.03%"
+      "value": "106.12",
+      "change": "+0.12%"
     },
     "SPY": {
-      "value": "770.56",
-      "change": "-0.32%"
+      "value": "772.49",
+      "change": "+0.25%"
     },
     "QQQ": {
-      "value": "718.45",
-      "change": "-0.34%"
+      "value": "723.7",
+      "change": "+0.73%"
     },
     "DIA": {
-      "value": "537.28",
-      "change": "-0.32%"
+      "value": "537.15",
+      "change": "-0.02%"
     },
     "IWM": {
       "value": "N/A",
@@ -54,12 +54,12 @@
       "change": "0%"
     },
     "BTC": {
-      "value": "63541.1",
-      "change": "-0.58%"
+      "value": "63411.72",
+      "change": "-0.2%"
     },
     "ETH": {
-      "value": "1880.72",
-      "change": "+0.5%"
+      "value": "1877.59",
+      "change": "-0.17%"
     },
     "Gold": {
       "value": "N/A",
@@ -146,8 +146,8 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "159.26",
-      "change": "+0.07%"
+      "value": "159.33",
+      "change": "+0.04%"
     },
     "JP10Y": {
       "value": "N/A",
@@ -164,13 +164,13 @@
       "analysis": "ETH treasury + BTC dom \u2192 widen ladder strikes"
     },
     "WALCL": {
-      "value": "6748567.0000000000",
+      "value": "6759955.0000000000",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "TGA": {
-      "value": "929325.0000000000",
+      "value": "959405.0000000000",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
@@ -182,19 +182,19 @@
       "color": "#22C55E"
     },
     "Reserves": {
-      "value": "2993349.0000000000",
+      "value": "2944059.0000000000",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "SOFR": {
-      "value": "3.64",
+      "value": "3.62",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "NetLiq": {
-      "value": "5819242.0",
+      "value": "5800550.0",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
