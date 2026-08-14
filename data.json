@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-13 22:41 CDT",
+  "updated": "2026-08-14 22:22 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "79.61",
-      "change": "+0.13%"
+      "value": "79.79",
+      "change": "+0.23%"
     },
     "LQD": {
-      "value": "106.12",
-      "change": "+0.12%"
+      "value": "106.55",
+      "change": "+0.41%"
     },
     "SPY": {
-      "value": "772.49",
-      "change": "+0.25%"
+      "value": "777.88",
+      "change": "+0.7%"
     },
     "QQQ": {
-      "value": "723.7",
-      "change": "+0.73%"
+      "value": "732.07",
+      "change": "+1.16%"
     },
     "DIA": {
-      "value": "537.15",
-      "change": "-0.02%"
+      "value": "537.91",
+      "change": "+0.14%"
     },
     "IWM": {
       "value": "N/A",
@@ -54,12 +54,12 @@
       "change": "0%"
     },
     "BTC": {
-      "value": "63411.72",
-      "change": "-0.2%"
+      "value": "63418.04",
+      "change": "+0.01%"
     },
     "ETH": {
-      "value": "1877.59",
-      "change": "-0.17%"
+      "value": "1884.61",
+      "change": "+0.37%"
     },
     "Gold": {
       "value": "N/A",
@@ -146,8 +146,8 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "159.33",
-      "change": "+0.04%"
+      "value": "159.43",
+      "change": "+0.06%"
     },
     "JP10Y": {
       "value": "N/A",
@@ -200,7 +200,7 @@
       "color": "#22C55E"
     },
     "ETHBTC": {
-      "value": "0.0296",
+      "value": "0.0297",
       "change": "N/A",
       "signal": "",
       "color": "#F97316"
