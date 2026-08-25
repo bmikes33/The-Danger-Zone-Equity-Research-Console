@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-24 22:25 CDT",
+  "updated": "2026-08-25 22:26 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,52 +14,52 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "79.61",
-      "change": "+0.06%"
+      "value": "79.7",
+      "change": "+0.11%"
     },
     "LQD": {
-      "value": "105.92",
-      "change": "-0.13%"
+      "value": "106.18",
+      "change": "+0.25%"
     },
     "SPY": {
-      "value": "765.72",
-      "change": "+0.41%"
+      "value": "763.47",
+      "change": "-0.29%"
     },
     "QQQ": {
-      "value": "713.44",
-      "change": "+0.35%"
+      "value": "706.32",
+      "change": "-1.0%"
     },
     "DIA": {
-      "value": "532.22",
-      "change": "+0.89%"
+      "value": "533.65",
+      "change": "+0.27%"
     },
     "IWM": {
-      "value": "299.96",
-      "change": "+0.77%"
+      "value": "N/A",
+      "change": "0%"
     },
     "RSP": {
-      "value": "221.67",
-      "change": "+0.63%"
+      "value": "N/A",
+      "change": "0%"
     },
     "MTUM": {
-      "value": "305.17",
-      "change": "+0.02%"
+      "value": "N/A",
+      "change": "0%"
     },
     "QUAL": {
-      "value": "223.22",
-      "change": "+0.41%"
+      "value": "N/A",
+      "change": "0%"
     },
     "VLUE": {
-      "value": "202.52",
-      "change": "+0.46%"
+      "value": "N/A",
+      "change": "0%"
     },
     "BTC": {
-      "value": "77729.36",
-      "change": "+0.88%"
+      "value": "78981.59",
+      "change": "+1.61%"
     },
     "ETH": {
-      "value": "2463.9",
-      "change": "+1.73%"
+      "value": "2482.17",
+      "change": "+0.74%"
     },
     "Gold": {
       "value": "N/A",
@@ -146,8 +146,8 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "158.87",
-      "change": "-0.04%"
+      "value": "159.13",
+      "change": "+0.16%"
     },
     "JP10Y": {
       "value": "N/A",
@@ -200,7 +200,7 @@
       "color": "#22C55E"
     },
     "ETHBTC": {
-      "value": "0.0317",
+      "value": "0.0314",
       "change": "N/A",
       "signal": "",
       "color": "#F97316"
