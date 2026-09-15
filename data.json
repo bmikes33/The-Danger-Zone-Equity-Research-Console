@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-15 00:20 CDT",
+  "updated": "2026-09-15 23:59 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,44 +14,44 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "78.6",
-      "change": "-0.03%"
+      "value": "78.53",
+      "change": "-0.09%"
     },
     "LQD": {
-      "value": "104.32",
-      "change": "-0.04%"
+      "value": "104.3",
+      "change": "-0.02%"
     },
     "SPY": {
-      "value": "764.29",
-      "change": "+0.85%"
+      "value": "760.88",
+      "change": "-0.45%"
     },
     "QQQ": {
-      "value": "714.88",
-      "change": "+0.87%"
+      "value": "709.18",
+      "change": "-0.8%"
     },
     "DIA": {
-      "value": "525.79",
-      "change": "+0.97%"
+      "value": "524.49",
+      "change": "-0.25%"
     },
     "IWM": {
-      "value": "288.89",
-      "change": "+0.41%"
+      "value": "N/A",
+      "change": "0%"
     },
     "RSP": {
-      "value": "214.87",
-      "change": "+0.8%"
+      "value": "N/A",
+      "change": "0%"
     },
     "MTUM": {
-      "value": "307.04",
-      "change": "+1.28%"
+      "value": "N/A",
+      "change": "0%"
     },
     "QUAL": {
-      "value": "220.2",
-      "change": "+0.81%"
+      "value": "N/A",
+      "change": "0%"
     },
     "VLUE": {
-      "value": "203.19",
-      "change": "+1.14%"
+      "value": "N/A",
+      "change": "0%"
     },
     "BTC": {
       "value": "78185.01",
