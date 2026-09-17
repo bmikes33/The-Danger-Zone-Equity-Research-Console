@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-17 00:09 CDT",
+  "updated": "2026-09-17 23:55 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "78.38",
-      "change": "-0.19%"
+      "value": "78.42",
+      "change": "+0.05%"
     },
     "LQD": {
-      "value": "104.28",
-      "change": "-0.02%"
+      "value": "104.45",
+      "change": "+0.16%"
     },
     "SPY": {
-      "value": "757.39",
-      "change": "-0.46%"
+      "value": "754.05",
+      "change": "-0.44%"
     },
     "QQQ": {
-      "value": "704.54",
-      "change": "-0.65%"
+      "value": "704.72",
+      "change": "+0.03%"
     },
     "DIA": {
-      "value": "521.23",
-      "change": "-0.62%"
+      "value": "515.22",
+      "change": "-1.15%"
     },
     "IWM": {
       "value": "N/A",
@@ -164,13 +164,13 @@
       "analysis": "ETH treasury + BTC dom \u2192 widen ladder strikes"
     },
     "WALCL": {
-      "value": "6740619",
+      "value": "6746548",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "TGA": {
-      "value": "843705",
+      "value": "991708",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
@@ -182,19 +182,19 @@
       "color": "#22C55E"
     },
     "Reserves": {
-      "value": "2991310",
+      "value": "3013794",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "SOFR": {
-      "value": "3.64",
+      "value": "3.62",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "NetLiq": {
-      "value": "5896914.0",
+      "value": "5754840.0",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
