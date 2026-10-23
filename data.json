@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21 00:23 CDT",
+  "updated": "2026-10-23 00:24 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "76.83",
-      "change": "-0.04%"
+      "value": "76.98",
+      "change": "+0.2%"
     },
     "LQD": {
-      "value": "102.88",
-      "change": "-0.5%"
+      "value": "103.21",
+      "change": "-0.01%"
     },
     "SPY": {
-      "value": "766.48",
-      "change": "+0.42%"
+      "value": "773.09",
+      "change": "+0.53%"
     },
     "QQQ": {
-      "value": "718.36",
-      "change": "+1.21%"
+      "value": "725.2",
+      "change": "+1.05%"
     },
     "DIA": {
-      "value": "518.92",
-      "change": "-0.03%"
+      "value": "527.7",
+      "change": "+0.64%"
     },
     "IWM": {
       "value": "N/A",
@@ -54,12 +54,12 @@
       "change": "0%"
     },
     "BTC": {
-      "value": "82938.26",
-      "change": "+1.34%"
+      "value": "81307.16",
+      "change": "-3.23%"
     },
     "ETH": {
-      "value": "2448.5",
-      "change": "+1.81%"
+      "value": "2386.08",
+      "change": "-3.58%"
     },
     "Gold": {
       "value": "N/A",
@@ -146,16 +146,16 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "158.28",
-      "change": "-0.15%"
+      "value": "156.54",
+      "change": "-1.01%"
     },
     "JP10Y": {
       "value": "N/A",
       "change": "0%"
     },
     "BMNR": {
-      "value": "N/A",
-      "change": "0%",
+      "value": "23.96",
+      "change": "+5.0%",
       "iv_rank": "85",
       "signal": "IV rank 85 \u2192 premium rich for short puts",
       "ladder_breakeven": "15% OTM",
@@ -164,13 +164,13 @@
       "analysis": "ETH treasury + BTC dom \u2192 widen ladder strikes"
     },
     "WALCL": {
-      "value": "6755639",
+      "value": "6753604",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "TGA": {
-      "value": "885823",
+      "value": "945153",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
@@ -182,25 +182,25 @@
       "color": "#22C55E"
     },
     "Reserves": {
-      "value": "3022140",
+      "value": "2962607",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "SOFR": {
-      "value": "3.87",
+      "value": "3.88",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "NetLiq": {
-      "value": "5869816.0",
+      "value": "5808451.0",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
     },
     "ETHBTC": {
-      "value": "0.0295",
+      "value": "0.0293",
       "change": "N/A",
       "signal": "",
       "color": "#F97316"
