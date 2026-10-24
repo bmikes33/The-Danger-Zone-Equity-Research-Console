@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23 00:24 CDT",
+  "updated": "2026-10-24 00:17 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "76.98",
-      "change": "+0.2%"
+      "value": "77.1",
+      "change": "+0.16%"
     },
     "LQD": {
-      "value": "103.21",
-      "change": "-0.01%"
+      "value": "104.28",
+      "change": "+1.04%"
     },
     "SPY": {
-      "value": "773.09",
-      "change": "+0.53%"
+      "value": "763.96",
+      "change": "-1.18%"
     },
     "QQQ": {
-      "value": "725.2",
-      "change": "+1.05%"
+      "value": "704.47",
+      "change": "-2.86%"
     },
     "DIA": {
-      "value": "527.7",
-      "change": "+0.64%"
+      "value": "527.89",
+      "change": "+0.04%"
     },
     "IWM": {
       "value": "N/A",
@@ -54,12 +54,12 @@
       "change": "0%"
     },
     "BTC": {
-      "value": "81307.16",
-      "change": "-3.23%"
+      "value": "81078.04",
+      "change": "-0.28%"
     },
     "ETH": {
-      "value": "2386.08",
-      "change": "-3.58%"
+      "value": "2384.38",
+      "change": "-0.07%"
     },
     "Gold": {
       "value": "N/A",
@@ -98,24 +98,24 @@
       "change": "0%"
     },
     "XLI": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "166.73",
+      "change": "-0.94%"
     },
     "XLC": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "107.42",
+      "change": "-1.42%"
     },
     "XLY": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "115.01",
+      "change": "-0.45%"
     },
     "XLP": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "89.99",
+      "change": "+3.31%"
     },
     "XLU": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "42.87",
+      "change": "+2.07%"
     },
     "XLB": {
       "value": "N/A",
@@ -146,16 +146,16 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "156.54",
-      "change": "-1.01%"
+      "value": "156.82",
+      "change": "+0.18%"
     },
     "JP10Y": {
       "value": "N/A",
       "change": "0%"
     },
     "BMNR": {
-      "value": "23.96",
-      "change": "+5.0%",
+      "value": "N/A",
+      "change": "0%",
       "iv_rank": "85",
       "signal": "IV rank 85 \u2192 premium rich for short puts",
       "ladder_breakeven": "15% OTM",
@@ -188,7 +188,7 @@
       "color": "#22C55E"
     },
     "SOFR": {
-      "value": "3.88",
+      "value": "3.9",
       "change": "N/A",
       "signal": "",
       "color": "#22C55E"
@@ -200,7 +200,7 @@
       "color": "#22C55E"
     },
     "ETHBTC": {
-      "value": "0.0293",
+      "value": "0.0294",
       "change": "N/A",
       "signal": "",
       "color": "#F97316"
@@ -229,27 +229,27 @@
     },
     {
       "s": "XLI",
-      "c": "N/A",
+      "c": "166.73",
       "clr": "#A78BFA"
     },
     {
       "s": "XLC",
-      "c": "N/A",
+      "c": "107.42",
       "clr": "#A78BFA"
     },
     {
       "s": "XLY",
-      "c": "N/A",
+      "c": "115.01",
       "clr": "#A78BFA"
     },
     {
       "s": "XLP",
-      "c": "N/A",
+      "c": "89.99",
       "clr": "#A78BFA"
     },
     {
       "s": "XLU",
-      "c": "N/A",
+      "c": "42.87",
       "clr": "#A78BFA"
     },
     {
