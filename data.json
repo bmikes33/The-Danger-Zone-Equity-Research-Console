@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11 01:43 CDT",
+  "updated": "2026-11-12 02:42 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -14,24 +14,24 @@
       "change": "0%"
     },
     "HYG": {
-      "value": "77.51",
-      "change": "+0.36%"
+      "value": "77.18",
+      "change": "-0.43%"
     },
     "LQD": {
-      "value": "104.67",
-      "change": "+0.13%"
+      "value": "103.88",
+      "change": "-0.75%"
     },
     "SPY": {
-      "value": "752.69",
-      "change": "+2.37%"
+      "value": "749.92",
+      "change": "-0.37%"
     },
     "QQQ": {
-      "value": "679.35",
-      "change": "+3.54%"
+      "value": "674.76",
+      "change": "-0.68%"
     },
     "DIA": {
-      "value": "523.33",
-      "change": "+2.17%"
+      "value": "521.73",
+      "change": "-0.31%"
     },
     "IWM": {
       "value": "N/A",
@@ -54,12 +54,12 @@
       "change": "0%"
     },
     "BTC": {
-      "value": "73697.87",
-      "change": "-2.07%"
+      "value": "73927.63",
+      "change": "+0.31%"
     },
     "ETH": {
-      "value": "2050.58",
-      "change": "-3.83%"
+      "value": "2053.73",
+      "change": "+0.15%"
     },
     "Gold": {
       "value": "N/A",
@@ -90,24 +90,24 @@
       "change": "0%"
     },
     "XLF": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "58.29",
+      "change": "+0.52%"
     },
     "XLE": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "62.21",
+      "change": "+0.44%"
     },
     "XLI": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "168.73",
+      "change": "-0.09%"
     },
     "XLC": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "107.76",
+      "change": "+0.37%"
     },
     "XLY": {
-      "value": "N/A",
-      "change": "0%"
+      "value": "121.05",
+      "change": "+0.03%"
     },
     "XLP": {
       "value": "N/A",
@@ -146,8 +146,8 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "158.71",
-      "change": "+0.47%"
+      "value": "159.74",
+      "change": "+0.65%"
     },
     "JP10Y": {
       "value": "N/A",
@@ -219,27 +219,27 @@
     },
     {
       "s": "XLF",
-      "c": "N/A",
+      "c": "58.29",
       "clr": "#A78BFA"
     },
     {
       "s": "XLE",
-      "c": "N/A",
+      "c": "62.21",
       "clr": "#A78BFA"
     },
     {
       "s": "XLI",
-      "c": "N/A",
+      "c": "168.73",
       "clr": "#A78BFA"
     },
     {
       "s": "XLC",
-      "c": "N/A",
+      "c": "107.76",
       "clr": "#A78BFA"
     },
     {
       "s": "XLY",
-      "c": "N/A",
+      "c": "121.05",
       "clr": "#A78BFA"
     },
     {
