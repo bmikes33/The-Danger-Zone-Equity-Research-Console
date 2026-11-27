@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26 03:57 CDT",
+  "updated": "2026-11-27 03:56 CDT",
   "instruments": {
     "VIX": {
       "value": "N/A",
@@ -54,12 +54,12 @@
       "change": "0%"
     },
     "BTC": {
-      "value": "60383.51",
-      "change": "+1.08%"
+      "value": "60495.57",
+      "change": "+0.19%"
     },
     "ETH": {
-      "value": "1690.38",
-      "change": "+0.76%"
+      "value": "1687.61",
+      "change": "-0.16%"
     },
     "Gold": {
       "value": "N/A",
@@ -102,24 +102,24 @@
       "change": "0%"
     },
     "XLC": {
-      "value": "105.38",
-      "change": "+0.89%"
+      "value": "N/A",
+      "change": "0%"
     },
     "XLY": {
-      "value": "117.49",
-      "change": "-0.2%"
+      "value": "N/A",
+      "change": "0%"
     },
     "XLP": {
-      "value": "92.3",
-      "change": "+0.46%"
+      "value": "N/A",
+      "change": "0%"
     },
     "XLU": {
-      "value": "43.61",
-      "change": "+0.48%"
+      "value": "N/A",
+      "change": "0%"
     },
     "XLB": {
-      "value": "51.21",
-      "change": "+2.07%"
+      "value": "N/A",
+      "change": "0%"
     },
     "XLRE": {
       "value": "N/A",
@@ -146,8 +146,8 @@
       "change": "0%"
     },
     "USDJPY": {
-      "value": "159.2",
-      "change": "-0.03%"
+      "value": "159.28",
+      "change": "+0.05%"
     },
     "JP10Y": {
       "value": "N/A",
@@ -200,7 +200,7 @@
       "color": "#22C55E"
     },
     "ETHBTC": {
-      "value": "0.028",
+      "value": "0.0279",
       "change": "N/A",
       "signal": "",
       "color": "#F97316"
@@ -234,27 +234,27 @@
     },
     {
       "s": "XLC",
-      "c": "105.38",
+      "c": "N/A",
       "clr": "#A78BFA"
     },
     {
       "s": "XLY",
-      "c": "117.49",
+      "c": "N/A",
       "clr": "#A78BFA"
     },
     {
       "s": "XLP",
-      "c": "92.3",
+      "c": "N/A",
       "clr": "#A78BFA"
     },
     {
       "s": "XLU",
-      "c": "43.61",
+      "c": "N/A",
       "clr": "#A78BFA"
     },
     {
       "s": "XLB",
-      "c": "51.21",
+      "c": "N/A",
       "clr": "#A78BFA"
     },
     {
